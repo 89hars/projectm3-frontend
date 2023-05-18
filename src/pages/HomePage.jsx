@@ -22,14 +22,14 @@ const HomePage = () => {
   }, []);
 
   return (
-    <>
+    <div>
       <h1>All Artworks</h1>
       {artwork.map((eachArt) => (
-        <Link key={eachArt._id} to={`/recipes/${eachArt._id}`}>
+        <Link key={eachArt._id} to={`/recipes/`}>
           {eachArt.title}
         </Link>
       ))}
-    </>
+    </div>
   );
 };
 

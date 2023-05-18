@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-// Here we handle the delete and update as buttons. 
+// Here we handle the delete as buttons. 
 
 const DetailsPage = () => {
   const { artObjectId } = useParams()
