@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import DetailsPage from './pages/DetailsPage'
 import UpdatePage from './pages/UpdatePage'
+import CreatePage from './pages/CreatePage'
 
  function App() {
  /*    const APITestConnection = async () => {
@@ -16,12 +17,13 @@ import UpdatePage from './pages/UpdatePage'
   }, [])
 
 
-   // Routes To CRUD, delete  will be handle in Details
+   // Routes To CRUD, delete  will be handle inside Details
   return (
     <Routes>
       <Route path='/' element={<HomePage />} />
       <Route path='/details' element={<DetailsPage />} />
       <Route path='/update' element={<UpdatePage />} />
+      <Route path='/create' element={<CreatePage />} />
 
     </Routes>
   )
