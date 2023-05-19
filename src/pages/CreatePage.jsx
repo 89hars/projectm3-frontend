@@ -21,7 +21,7 @@ function CreatePage() {
      Price: 
     <input/>
     </label>
-    <button type="submit"> Create </button>
+    <button type="submit"> Crate </button>
     </form>
 
     </div>
