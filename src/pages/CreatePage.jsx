@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Layouts from '../components/Layouts'
 
 function CreatePage() {
   const navigate = useNavigate()
@@ -12,13 +13,13 @@ function CreatePage() {
   const handleSubmit = async event => {
     event.preventDefault()
     console.log('submited')
-  // Payload being send 
-    const payload = {title, artist, technic, price,}
+    // Payload being send 
+    const payload = { title, artist, technic, price, }
 
     try {
       const response = await fetch(`${import.meta.env.VITE_BASE_API_URL}/details`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json',},
+        headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(payload),
       })
       if (response.status === 201) {
@@ -32,35 +33,37 @@ function CreatePage() {
   }
 
   return (
-    <div> 
-    <h1> Create Artwork </h1> 
-    <form onSubmit = {handleSubmit}>
+    <Layouts>
+      <div>
+        <h1> Create Artwork </h1>
+        <form onSubmit={handleSubmit}>
 
-    <label> Title: 
-    <input 
-    value= {title}
-    onChange={event => {setTitle(event.target.value)}} /> 
-    </label>
+          <label> Title:
+            <input
+              value={title}
+              onChange={event => { setTitle(event.target.value) }} />
+          </label>
 
-    <label> Artist: 
-    <input 
-    value={artist} 
-    onChange={event => {setArtist(event.target.value)}}/> 
-    </label>
+          <label> Artist:
+            <input
+              value={artist}
+              onChange={event => { setArtist(event.target.value) }} />
+          </label>
 
-    <label> Technic: 
-    <input value={technic}
-    onChange={event => {setTechnic(event.target.value)}}/> 
-    </label>
+          <label> Technic:
+            <input value={technic}
+              onChange={event => { setTechnic(event.target.value) }} />
+          </label>
 
-    <label>  Price: 
-    <input value={price}
-    onChange={event => {setPrice(event.target.value)}} /> 
-    </label>
+          <label>  Price:
+            <input value={price}
+              onChange={event => { setPrice(event.target.value) }} />
+          </label>
 
-    <button type="submit"> Create </button>
-    </form>
-    </div>
+          <button type="submit"> Create </button>
+        </form>
+      </div>
+    </Layouts>
   )
 }
 

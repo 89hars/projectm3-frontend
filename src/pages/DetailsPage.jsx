@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import Layouts from '../components/Layouts'
 
 // Here we handle the delete as buttons. 
 
@@ -28,14 +29,14 @@ const DetailsPage = () => {
     console.log(pieceOfArt)
   }, [pieceOfArt])
 
-  return pieceOfArt ? (
+  return pieceOfArt ? (<Layouts>
     <>
       <h1>Details of {pieceOfArt.title}</h1>
-      <h2>{ /* something coming from the model */ } </h2>
+      <h2>{ /* something coming from the model */} </h2>
     </>
-  ) : (
+  </Layouts>) : (<Layouts>
     <h1>Loading...</h1>
-  )
+  </Layouts>)
 }
 
 export default DetailsPage

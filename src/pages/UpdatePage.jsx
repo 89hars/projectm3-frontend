@@ -1,10 +1,11 @@
 import React from 'react'
+import Layouts from '../components/Layouts'
 
 function UpdatePage() {
   return (
-    <div>
-     <h1> UpdatePage </h1>
-     </div>
+    <Layouts>
+      <h1> UpdatePage </h1>
+    </Layouts>
   )
 }
 

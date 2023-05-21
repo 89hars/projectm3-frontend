@@ -1,6 +1,10 @@
-const LoginPage = ()=>{
+import Layouts from '../components/Layouts'
+
+const LoginPage = () => {
     return (
-        <h1>Login !</h1>
+        <Layouts>
+            <h1>Login !</h1>
+        </Layouts>
     )
 }
 export default LoginPage

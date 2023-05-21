@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Layouts from "../components/Layouts";
 
 const HomePage = () => {
   // Store data
@@ -22,14 +23,14 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
+    <Layouts>
       <h1>All Artworks</h1>
       {artwork.map((eachArt) => (
         <Link key={eachArt._id} to={`/recipes/`}>
           {eachArt.title}
         </Link>
       ))}
-    </div>
+    </Layouts>
   );
 };
 

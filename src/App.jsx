@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import 'bootstrap'
 import HomePage from "./pages/HomePage";
 import DetailsPage from "./pages/DetailsPage";
 import UpdatePage from "./pages/UpdatePage";
 import CreatePage from "./pages/CreatePage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
+import CartPage from "./pages/CartPage";
+
 
 function App() {
   /*    const APITestConnection = async () => {
@@ -20,6 +23,7 @@ function App() {
 
   // Routes To CRUD, delete  will be handle inside Details
   return (
+
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/details" element={<DetailsPage />} />
@@ -27,7 +31,10 @@ function App() {
       <Route path="/create" element={<CreatePage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/cart" element={<CartPage />} />
     </Routes>
+
+
   );
 }
 
