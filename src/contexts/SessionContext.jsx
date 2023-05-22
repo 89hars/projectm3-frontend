@@ -3,8 +3,9 @@ const SessionContext = createContext();
 
 const SessionContextProvider = ({ children }) => {
   const [token, setToken] = useState();
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  const [user, setUser] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const verifyToken = async (currentToken) => {
     const response = await fetch("http://localhost:5005/auth/verify", {
@@ -13,11 +14,8 @@ const SessionContextProvider = ({ children }) => {
       },
     });
     if (response.status === 200) {
-      const parsed = await response.json();
-      console.log(parsed)
-      setToken(currentToken);
-      setIsLoggedIn(true);
-      console.log(parsed);
+      const { user } = await response.json();
+      initSessionContext(currentToken, user);
     }
     setIsLoading(false);
   };
@@ -26,25 +24,41 @@ const SessionContextProvider = ({ children }) => {
     const localToken = localStorage.getItem("authToken");
     if (localToken) {
       verifyToken(localToken);
+    } else {
+      setIsLoading(false);
     }
   }, []);
 
   useEffect(() => {
     if (token) {
       localStorage.setItem("authToken", token);
-      setIsLoading(false);
-    } else {
-      localStorage.removeItem("authToken");
     }
   }, [token]);
 
+  const initSessionContext = (token, user) => {
+    setToken(token);
+    setUser(user);
+    setIsLoggedIn(true);
+  };
+
   const logout = () => {
     setToken();
-    localStorage.removeItem("authToken");
+    setUser();
     setIsLoggedIn(false);
+    localStorage.removeItem("authToken");
   };
+
   return (
-    <SessionContext.Provider value={{ token, setToken, isLoggedIn, isLoading, logout }}>
+    <SessionContext.Provider
+      value={{
+        initSessionContext,
+        token,
+        user,
+        isLoggedIn,
+        isLoading,
+        logout,
+      }}
+    >
       {children}
     </SessionContext.Provider>
   );

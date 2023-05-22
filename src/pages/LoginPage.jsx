@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
 import Layouts from "../components/Layouts";
 
-
 const LoginPage = () => {
-  const { setToken } = useContext(SessionContext);
+  const { initSessionContext } = useContext(SessionContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -18,41 +17,41 @@ const LoginPage = () => {
       body: JSON.stringify({ email, password }),
     });
     if (response.status === 200) {
-      const responseToken = await response.json()
-      setToken(responseToken);
-      navigate('/')
+      const { token, user } = await response.json();
+      initSessionContext(token, user);
+      navigate("/");
     }
   };
 
   return (
     <Layouts>
-    <div>
-      <h1>Login </h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            placeholder="Enter you email"
-            type="email"
-            required
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </label>
+      <div>
+        <h1>Login </h1>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Email
+            <input
+              placeholder="Enter you email"
+              type="email"
+              required
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </label>
 
-        <label>
-          Password
-          <input
-            placeholder="Enter a password"
-            type="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-        <button type="submit">Log In </button>
-      </form>
-    </div>
+          <label>
+            Password
+            <input
+              placeholder="Enter a password"
+              type="password"
+              required
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </label>
+          <button type="submit">Log In </button>
+        </form>
+      </div>
     </Layouts>
   );
 };

@@ -9,6 +9,7 @@ import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import CartPage from "./pages/CartPage";
 import Allproducts from "./pages/AllProducts";
+import PrivateRoute from "../middleware/PrivateRoute";
 
 function App() {
   /*    const APITestConnection = async () => {
@@ -26,11 +27,32 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/details/:artObjectId" element={<DetailsPage />} />
-      <Route path="/update" element={<UpdatePage />} />
-      <Route path="/create" element={<CreatePage />} />
+      <Route
+        path="/update"
+        element={
+          <PrivateRoute>
+            <UpdatePage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/create"
+        element={
+          <PrivateRoute>
+            <CreatePage />
+          </PrivateRoute>
+        }
+      />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/cart" element={<CartPage />} />
+      <Route
+        path="/cart"
+        element={
+          <PrivateRoute>
+            <CartPage />
+          </PrivateRoute>
+        }
+      />
       <Route path="/allproducts" element={<Allproducts />} />
     </Routes>
   );
