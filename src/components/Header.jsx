@@ -1,16 +1,18 @@
 import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
+import Search from './Search'
 
 function Header() {
   const { isLoggedIn, user, logout } = useContext(SessionContext);
   const navigate = useNavigate();
-
   const handleLogout = (e) => {
     e.preventDefault();
     logout();
     navigate("/login");
   };
+
+
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -31,6 +33,7 @@ function Header() {
             Logo
           </NavLink>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <Search />
             <li className="nav-item">
               <NavLink to="/" className="nav-link">
                 Home
