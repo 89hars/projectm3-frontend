@@ -25,7 +25,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/details" element={<DetailsPage />} />
+      <Route path="/details/:artObjectId" element={<DetailsPage />} />
       <Route path="/update" element={<UpdatePage />} />
       <Route path="/create" element={<CreatePage />} />
       <Route path="/signup" element={<SignupPage />} />
