@@ -2,19 +2,22 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layouts from "../components/Layouts";
 
+
 const CreatePage = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [technic, setTechnic] = useState("");
   const [price, setPrice] = useState(0);
+  const [description, setDescription] = useState("");
+
 
   // How the submit will be handle
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("submited");
     // Payload being send
-    const payload = { title, artist, technic, price };
+    const payload = { title, artist, technic, price, description };
 
     try {
       const response = await fetch(`http://localhost:5005/details/create`, {
@@ -78,6 +81,16 @@ const CreatePage = () => {
               onChange={(event) => {
                 setPrice(event.target.value);
               }}
+            />
+          </label>
+
+          <label>
+            Description:
+            <textarea
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+              rows={4}
+              cols={50}
             />
           </label>
 
