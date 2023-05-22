@@ -29,7 +29,8 @@ const DetailsPage = () => {
     console.log(pieceOfArt)
   }, [pieceOfArt])
 
-  return pieceOfArt ? (<Layouts>
+  return pieceOfArt ? (
+  <Layouts>
     <>
       <h1>Details of {pieceOfArt.title}</h1>
       <h2>{ /* something coming from the model */} </h2>

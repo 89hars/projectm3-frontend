@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Layouts from '../components/Layouts'
+import Layouts from "../components/Layouts";
 
 const SignupPage = () => {
   const [email, setEmail] = useState("");
@@ -47,7 +47,8 @@ const SignupPage = () => {
         </label>
         <button type="submit">Create your account </button>
       </form>
-    </Layouts>
+    </div>
+    </Layouts >
   );
 };
 export default SignupPage;
