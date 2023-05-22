@@ -5,6 +5,8 @@ import Layouts from "../components/Layouts";
 const SignupPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -12,7 +14,7 @@ const SignupPage = () => {
     const response = await fetch("http://localhost:5005/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email, password, firstName, lastName}),
     });
 
     if (response.status === 201) {
@@ -24,6 +26,28 @@ const SignupPage = () => {
     <Layouts>
       <h1>Signup </h1>
       <form onSubmit={handleSubmit}>
+      <label>
+          Firstname
+          <input
+            placeholder="Enter you firstname"
+            type="firstname"
+            required
+            value={firstName}
+            onChange={(event) => setFirstName(event.target.value)}
+          />
+        </label>
+
+        <label>
+          Lastname
+          <input
+            placeholder="Enter you lastname"
+            type="lastname"
+            required
+            value={lastName}
+            onChange={(event) => setLastName(event.target.value)}
+          />
+        </label>
+
         <label>
           Email
           <input

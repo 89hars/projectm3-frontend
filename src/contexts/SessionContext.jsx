@@ -14,6 +14,7 @@ const SessionContextProvider = ({ children }) => {
     });
     if (response.status === 200) {
       const parsed = await response.json();
+      console.log(parsed)
       setToken(currentToken);
       setIsLoggedIn(true);
       console.log(parsed);
