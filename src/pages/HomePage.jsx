@@ -28,7 +28,13 @@ const HomePage = () => {
         <Link key={eachArt._id} to={`/recipes/`}>
           {eachArt.title}
         </Link>
-      ))}
+              ))}
+
+      <a href="/login"></a>
+      <a href="/signup"></a>
+      <a href="update"></a>
+      <a href="create"></a>
+
     </div>
   );
 };
