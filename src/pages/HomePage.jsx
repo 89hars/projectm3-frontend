@@ -1,5 +1,11 @@
+import Layouts from "../components/Layouts";
+
 const HomePage = () => {
-  return <h1> Home HomePage </h1>;
+  return (
+    <Layouts>
+      <h1> Home HomePage </h1>
+    </Layouts>
+  );
 };
 
 export default HomePage;

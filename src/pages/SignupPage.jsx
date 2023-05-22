@@ -21,6 +21,7 @@ const SignupPage = () => {
   };
 
   return (
+    <Layouts>
     <div>
       <h1>Signup </h1>
       <form onSubmit={handleSubmit}>
@@ -48,6 +49,7 @@ const SignupPage = () => {
         <button type="submit">Create your account </button>
       </form>
     </div>
+    </Layouts>
   );
 };
 export default SignupPage;
