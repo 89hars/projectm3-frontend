@@ -21,7 +21,7 @@ const SignupPage = () => {
   };
 
   return (
-    <div>
+    <Layouts>
       <h1>Signup </h1>
       <form onSubmit={handleSubmit}>
         <label>
