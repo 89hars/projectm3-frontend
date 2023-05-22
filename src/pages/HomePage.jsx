@@ -1,9 +1,12 @@
 import Layouts from "../components/Layouts";
+import { useLocation } from 'react-router-dom';
 
 const HomePage = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
   return (
-    <Layouts>
-      <h1> Home HomePage </h1>
+    <Layouts isHomePage={isHomePage}>
+      <h1 className="d-flex align-items-center justify-content-center"> Name </h1>
     </Layouts>
   );
 };

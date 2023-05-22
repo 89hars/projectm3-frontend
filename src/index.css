@@ -10,6 +10,16 @@
 /* font-family: 'Playfair Display', serif; */
 
 /* header */
+.home-main {
+  background-image: url('/Images/imagesbg.jfif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
 
 .navbar {
   font-family: 'Poppins', sans-serif;
