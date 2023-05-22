@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
+import Layouts from "../components/Layouts";
+
 
 const LoginPage = () => {
   const { setToken } = useContext(SessionContext);
@@ -23,6 +25,7 @@ const LoginPage = () => {
   };
 
   return (
+    <Layouts>
     <div>
       <h1>Login </h1>
       <form onSubmit={handleSubmit}>
@@ -50,6 +53,7 @@ const LoginPage = () => {
         <button type="submit">Log In </button>
       </form>
     </div>
+    </Layouts>
   );
 };
 

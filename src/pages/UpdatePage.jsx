@@ -1,20 +1,12 @@
-import React from "react";
-import { useContext } from "react";
-import { SessionContext } from "../contexts/SessionContext";
-import { Navigate } from "react-router-dom";
+import React from 'react'
+import Layouts from '../components/Layouts'
 
 function UpdatePage() {
-  const { isLoggedIn, isLoading } = useContext(SessionContext);
-  if (!isLoading && !isLoggedIn) {
-    return <Navigate to="/login" />;
-  }
-  return isLoading ? (
-    <h1>Loading...</h1>
-  ) : (
-    <div>
+  return (
+    <Layouts>
       <h1> UpdatePage </h1>
-    </div>
-  );
+    </Layouts>
+  )
 }
 
 export default UpdatePage;

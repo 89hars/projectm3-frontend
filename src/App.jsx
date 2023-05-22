@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import "bootstrap";
 import HomePage from "./pages/HomePage";
 import DetailsPage from "./pages/DetailsPage";
 import UpdatePage from "./pages/UpdatePage";
 import CreatePage from "./pages/CreatePage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
+import CartPage from "./pages/CartPage";
+import Allproducts from "./pages/AllProducts";
 
 function App() {
   /*    const APITestConnection = async () => {
@@ -22,11 +25,13 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/details" element={<DetailsPage />} />
+      <Route path="/details/:artObjectId" element={<DetailsPage />} />
       <Route path="/update" element={<UpdatePage />} />
       <Route path="/create" element={<CreatePage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/cart" element={<CartPage />} />
+      <Route path="/allproducts" element={<Allproducts />} />
     </Routes>
   );
 }
