@@ -21,37 +21,31 @@ const SignupPage = () => {
   };
 
   return (
-    <Layouts>
-      <h1 className="text-center">Signup </h1>
-      <form onSubmit={handleSubmit} className="form-reg">
-        <div className="form-reg2">
-          <label className="label">
-            Email
-            <input
-              className="input"
-              placeholder="Enter you email"
-              required
-              type="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </label>
-        </div>
-        <div className="form-reg2">
+    <div>
+      <h1>Signup </h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Email
+          <input
+            placeholder="Enter you email"
+            type="email"
+            required
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+        </label>
 
-          <label className="label">
-            Password
-            <input
-              className="input"
-              placeholder="Enter a password"
-              required
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </label>
-        </div>
-        <button className="submit-btn" type="submit">Create your account </button>
+        <label>
+          Password
+          <input
+            placeholder="Enter a password"
+            type="password"
+            required
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </label>
+        <button type="submit">Create your account </button>
       </form>
     </Layouts>
   );
