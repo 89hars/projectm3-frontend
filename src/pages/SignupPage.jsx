@@ -47,7 +47,7 @@ const SignupPage = () => {
         </label>
         <button type="submit">Create your account </button>
       </form>
-    </div>
+
     </Layouts >
   );
 };

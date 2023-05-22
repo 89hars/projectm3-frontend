@@ -9,6 +9,8 @@
 /* font-family: 'Poppins', sans-serif; */
 /* font-family: 'Playfair Display', serif; */
 
+/* header */
+
 .navbar {
   font-family: 'Poppins', sans-serif;
   font-size: 17px;
@@ -22,6 +24,7 @@
   font-weight: 300 !important;
 }
 
+/* //footer */
 .footer {
   color: white;
   padding: 25px;
@@ -41,6 +44,8 @@
   color: #ffefba;
   border-bottom: 1px solid #ffefba;
 }
+
+/* form */
 
 .form-reg {
   width: 400px;
