@@ -25,31 +25,30 @@ const LoginPage = () => {
 
   return (
     <Layouts>
-      <div>
-        <h1>Login </h1>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Email
-            <input
-              placeholder="Enter you email"
-              type="email"
-              required
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </label>
+      <div className="d-flex justify-content-center align-items-center pt-5">
+        <form onSubmit={handleSubmit} style={{ width: 360 }}>
+          <h1>Login page</h1>
+          <label className="text-secondary">Email</label>
+          <input
+            placeholder="Enter you email"
+            className="form-control"
+            type="email"
+            required
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
 
-          <label>
-            Password
-            <input
-              placeholder="Enter a password"
-              type="password"
-              required
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </label>
-          <button type="submit">Log In </button>
+          <label className="text-secondary mt-2">Password</label>
+          <input
+            placeholder="Enter a password"
+            className="form-control"
+            type="password"
+            required
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+
+          <button type="submit" className="btn btn-primary mt-4">Log In </button>
         </form>
       </div>
     </Layouts>

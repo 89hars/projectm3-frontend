@@ -14,7 +14,7 @@ const SignupPage = () => {
     const response = await fetch("http://localhost:5005/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, firstName, lastName}),
+      body: JSON.stringify({ email, password, firstName, lastName }),
     });
 
     if (response.status === 201) {
@@ -24,55 +24,55 @@ const SignupPage = () => {
 
   return (
     <Layouts>
-      <h1>Signup </h1>
-      <form onSubmit={handleSubmit}>
-      <label>
-          Firstname
+      <div className="d-flex justify-content-center align-items-center pt-5">
+        <form onSubmit={handleSubmit} style={{ width: 360 }}>
+          <h1>Signup page</h1>
+          <label className="text-secondary">Firstname</label>
           <input
             placeholder="Enter you firstname"
+            className="form-control"
             type="firstname"
             required
             value={firstName}
             onChange={(event) => setFirstName(event.target.value)}
           />
-        </label>
 
-        <label>
-          Lastname
+          <label className="text-secondary mt-2">Lastname</label>
           <input
             placeholder="Enter you lastname"
+            className="form-control"
             type="lastname"
             required
             value={lastName}
             onChange={(event) => setLastName(event.target.value)}
           />
-        </label>
 
-        <label>
-          Email
+          <label className="text-secondary mt-2">Email</label>
           <input
             placeholder="Enter you email"
+            className="form-control"
             type="email"
             required
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
-        </label>
 
-        <label>
-          Password
+          <label className="text-secondary mt-2">Password</label>
           <input
             placeholder="Enter a password"
+            className="form-control"
             type="password"
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
-        <button type="submit">Create your account </button>
-      </form>
 
-    </Layouts >
+          <button type="submit" className="btn btn-primary mt-4">
+            Create your account
+          </button>
+        </form>
+      </div>
+    </Layouts>
   );
 };
 export default SignupPage;
