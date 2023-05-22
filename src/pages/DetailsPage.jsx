@@ -7,6 +7,7 @@ import Layouts from "../components/Layouts";
 const DetailsPage = () => {
   const { artObjectId } = useParams();
   const [pieceOfArt, setPieceOfArt] = useState();
+  
 
   const fetchPieceOfArt = async () => {
     try {
@@ -33,12 +34,14 @@ const DetailsPage = () => {
 
   return pieceOfArt ? (
     <Layouts>
-      <>
-        <h1>Details of {pieceOfArt.title}</h1>
-        <h2>{pieceOfArt.artist} </h2>
-        <h2>{pieceOfArt.technic} </h2>
-        <h2>{pieceOfArt.price} </h2>
-      </>
+      <div>
+        <h1>{pieceOfArt.title} </h1>
+        <h2>Artist: {pieceOfArt.artist} </h2>
+        <h2>Technic: {pieceOfArt.technic} </h2>
+        <h2>Price: {pieceOfArt.price} </h2>
+        <p>Description: {pieceOfArt.description} </p>
+        
+      </div>
     </Layouts>
   ) : (
     <Layouts>
