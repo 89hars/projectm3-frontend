@@ -27,8 +27,8 @@ const SignupPage = () => {
           Email
           <input
             placeholder="Enter you email"
-            required
             type="email"
+            required
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
@@ -38,8 +38,8 @@ const SignupPage = () => {
           Password
           <input
             placeholder="Enter a password"
-            required
             type="password"
+            required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />

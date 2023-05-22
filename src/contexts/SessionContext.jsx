@@ -1,9 +1,13 @@
-import { createContext } from "react";
-export const SessionContext = createContext();
+import { createContext, useState } from "react";
+const SessionContext = createContext();
 
-
-const SessionContextProvider = ({children}) => {
-  return <SessionContextProvider>{children}</SessionContextProvider>;
+const SessionContextProvider = ({ children }) => {
+  const [token, setToken] = useState();
+  return (
+    <SessionContext.Provider value={{ token, setToken }}>
+      {children}
+    </SessionContext.Provider>
+  );
 };
 
-export default SessionContextProvider
+export { SessionContextProvider, SessionContext };

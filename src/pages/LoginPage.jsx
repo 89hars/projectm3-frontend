@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
 
 const LoginPage = () => {
+  const { setToken } = useContext(SessionContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const setToken = useContext(SessionContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -16,21 +16,22 @@ const LoginPage = () => {
       body: JSON.stringify({ email, password }),
     });
     if (response.status === 200) {
-      const responseToken = await response.json();
+      const responseToken = await response.json()
       setToken(responseToken);
+      navigate('/')
     }
   };
 
   return (
     <div>
-      <h1>Signup </h1>
+      <h1>Login </h1>
       <form onSubmit={handleSubmit}>
         <label>
           Email
           <input
             placeholder="Enter you email"
-            required
             type="email"
+            required
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
@@ -40,8 +41,8 @@ const LoginPage = () => {
           Password
           <input
             placeholder="Enter a password"
-            required
             type="password"
+            required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
