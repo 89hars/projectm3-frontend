@@ -9,6 +9,7 @@ import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import CartPage from "./pages/CartPage";
 import Allproducts from "./pages/AllProducts";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   /*    const APITestConnection = async () => {
@@ -32,6 +33,7 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/allproducts" element={<Allproducts />} />
+      <Route path="/searchbar" element={<SearchPage />} />
     </Routes>
   );
 }

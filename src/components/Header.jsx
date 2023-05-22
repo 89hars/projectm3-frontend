@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import Search from './Search'
 
 function Header() {
     return (
@@ -22,6 +23,7 @@ function Header() {
                             Logo
                         </NavLink>
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <Search />
                             <li className="nav-item">
                                 <NavLink to='/' className="nav-link" >
                                     Home
