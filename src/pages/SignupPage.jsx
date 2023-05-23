@@ -11,7 +11,7 @@ const SignupPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:5005/auth/signup", {
+    const response = await fetch("${import.meta.env.VITE_BASE_API_URL}/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password, firstName, lastName }),

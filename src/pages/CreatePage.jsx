@@ -30,7 +30,7 @@ const CreatePage = () => {
     payload.append("imageUrl", image);
 
     try {
-      const response = await fetch(`http://localhost:5005/products/create`, {
+      const response = await fetch(`${import.meta.env.VITE_BASE_API_URL}/products/create`, {
         method: "POST",
         "Content-Type": "multipart/form-data",
         body: payload,
