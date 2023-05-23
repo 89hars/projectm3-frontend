@@ -7,17 +7,17 @@ import Layouts from "../components/Layouts";
 const DetailsPage = () => {
   const { artObjectId } = useParams();
   const [pieceOfArt, setPieceOfArt] = useState();
-  
 
   const fetchPieceOfArt = async () => {
     try {
       const response = await fetch(
         `http://localhost:5005/details/details/${artObjectId}`
       );
-      console.log(response);
+
       if (response.status === 200) {
         const parsed = await response.json();
         setPieceOfArt(parsed);
+        console.log(parsed);
       }
     } catch (error) {
       console.log(error);
@@ -36,11 +36,11 @@ const DetailsPage = () => {
     <Layouts>
       <div>
         <h1>{pieceOfArt.title} </h1>
+        <img src={pieceOfArt.media[0].link} alt="someStuff" />
         <h5>Artist: {pieceOfArt.artist} </h5>
         <h5>Technic: {pieceOfArt.technic} </h5>
         <h5>Price: {pieceOfArt.price} </h5>
         <p> {pieceOfArt.description} </p>
-        
       </div>
     </Layouts>
   ) : (
