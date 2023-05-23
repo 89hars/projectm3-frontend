@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import Layouts from "../components/Layouts";
 
 const Allproducts = () => {
-  // Store data
+  // Store process
   const [artwork, setArtwork] = useState([]);
-  // Define how to fetch data
+  // Define how to fetch process
   const fetchArtwork = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_BASE_API_URL}/details/allproducts`);
+      const response = await fetch(
+        `${import.meta.env.VITE_API}/details/allproducts`
+      );
       if (response.status === 200) {
         const parsed = await response.json();
         setArtwork(parsed);

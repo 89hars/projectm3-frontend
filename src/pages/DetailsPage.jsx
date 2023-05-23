@@ -11,7 +11,7 @@ const DetailsPage = () => {
   const fetchPieceOfArt = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BASE_API_URL}/details/details/${artObjectId}`
+        `${import.meta.env.VITE_API}/details/details/${artObjectId}`
       );
 
       if (response.status === 200) {

@@ -17,7 +17,7 @@ const ProfilePage = () => {
     console.log(token);
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BASE_API_URL}/products/createdby/${user._id}`
+        `${import.meta.env.VITE_API}/products/createdby/${user._id}`
       );
       if (response.status === 200) {
         const data = await response.json();
@@ -44,7 +44,7 @@ const ProfilePage = () => {
   const handleDelete = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BASE_API_URL}/products/${productIdToDelete}`,
+        `${import.meta.env.VITE_API}/products/${productIdToDelete}`,
         {
           method: "DELETE",
           headers: {
@@ -67,7 +67,7 @@ const ProfilePage = () => {
     const payload = { title, technic, price, description };
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BASE_API_URL}/products/${productIdToUpdate}`,
+        `${import.meta.env.VITE_API}/products/${productIdToUpdate}`,
         {
           method: "PUT",
           headers: {
