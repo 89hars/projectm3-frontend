@@ -35,7 +35,6 @@ const CreatePage = () => {
         "Content-Type": "multipart/form-data",
         body: payload,
         headers: {
-          "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`,
         },
       });

@@ -67,9 +67,9 @@ const ProfilePage = () => {
     const payload = { title, technic, price, description };
     try {
       const response = await fetch(
-        `http://localhost:5005/products/edit/${productIdToUpdate}`,
+        `http://localhost:5005/products/${productIdToUpdate}`,
         {
-          method: "POST",
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
@@ -108,6 +108,7 @@ const ProfilePage = () => {
           <table className="table">
             <thead>
               <tr>
+                <th scope="col">Image</th>
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
                 <th scope="col">Technic</th>
@@ -118,6 +119,13 @@ const ProfilePage = () => {
             <tbody>
               {createdProducts.map((product) => (
                 <tr key={product._id}>
+                  <td>
+                    <img
+                      src={product?.media[0]?.link}
+                      alt="someStuff"
+                      width={100}
+                    />
+                  </td>
                   <td>{product.title}</td>
                   <td style={{ maxWidth: 500 }}>{product.description}</td>
                   <td>{product.technic}</td>
