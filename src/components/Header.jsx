@@ -16,8 +16,6 @@ function Header() {
     navigate("/login");
   };
 
-
-
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -67,9 +65,14 @@ function Header() {
                   </NavLink>
                   <ul className="dropdown-menu">
                     <li>
-                      <NavLink className="dropdown-item" onClick={handleLogout}>
-                        Logout
+                      <NavLink className="dropdown-item" to="/profile">
+                        Profile
                       </NavLink>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" onClick={handleLogout}>
+                        Logout
+                      </a>
                     </li>
                   </ul>
                 </li>
