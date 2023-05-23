@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import "bootstrap";
 import HomePage from "./pages/HomePage";
 import DetailsPage from "./pages/DetailsPage";
-import UpdatePage from "./pages/UpdatePage";
 import CreatePage from "./pages/CreatePage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
@@ -11,6 +10,7 @@ import CartPage from "./pages/CartPage";
 import Allproducts from "./pages/AllProducts";
 import PrivateRoute from "../middleware/PrivateRoute";
 import SearchPage from "./pages/SearchPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   /*    const APITestConnection = async () => {
@@ -29,14 +29,6 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/details/:artObjectId" element={<DetailsPage />} />
       <Route
-        path="/update"
-        element={
-          <PrivateRoute>
-            <UpdatePage />
-          </PrivateRoute>
-        }
-      />
-      <Route
         path="/create"
         element={
           <PrivateRoute>
@@ -54,6 +46,15 @@ function App() {
           </PrivateRoute>
         }
       />
+      <Route
+        path="/profile"
+        element={
+          <PrivateRoute>
+            <ProfilePage />
+          </PrivateRoute>
+        }
+      />
+
       <Route path="/allproducts" element={<Allproducts />} />
       <Route path="/searchbar" element={<SearchPage />} />
     </Routes>

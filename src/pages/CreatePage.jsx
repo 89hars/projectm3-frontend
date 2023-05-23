@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Layouts from "../components/Layouts";
-
+import { SessionContext } from "../contexts/SessionContext";
 
 const CreatePage = () => {
+  const { token } = useContext(SessionContext);
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [technic, setTechnic] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
-
 
   // How the submit will be handle
   const handleSubmit = async (event) => {
@@ -20,9 +20,12 @@ const CreatePage = () => {
     const payload = { title, artist, technic, price, description };
 
     try {
-      const response = await fetch(`http://localhost:5005/details/create`, {
+      const response = await fetch(`http://localhost:5005/products/create`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
         body: JSON.stringify(payload),
       });
       if (response.status === 201) {
