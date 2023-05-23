@@ -12,6 +12,7 @@ const Allproducts = () => {
       if (response.status === 200) {
         const parsed = await response.json();
         setArtwork(parsed);
+        console.log(parsed);
       }
     } catch (error) {
       console.log(error);
@@ -26,14 +27,19 @@ const Allproducts = () => {
     <div>
       <Layouts>
         <h1>All Artworks</h1>
-        <ul>
-          {artwork.map((eachArt) => (
-            <li key={eachArt._id}>
-              <Link to={`/details/${eachArt._id}`}>{eachArt.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {artwork ? (
+          <ul>
+            {artwork.map((eachArt) => (
+              <li key={eachArt._id}>
+                <Link to={`/details/${eachArt._id}`}>{eachArt.title}</Link>
+                <img src={eachArt?.media[0]?.link} alt="someStuff" />
+                <p></p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div>nothing here</div>
+        )}
       </Layouts>
     </div>
   );
