@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Layouts from "../components/Layouts";
+import { SessionContext } from "../contexts/SessionContext";
 
 const CreatePage = () => {
+  const { token } = useContext(SessionContext);
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
@@ -28,11 +30,13 @@ const CreatePage = () => {
     payload.append("imageUrl", image);
 
     try {
-      const response = await fetch(`http://localhost:5005/details/create`, {
+      const response = await fetch(`http://localhost:5005/products/create`, {
         method: "POST",
         "Content-Type": "multipart/form-data",
-        // body: JSON.stringify(payload),
         body: payload,
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
       });
       if (response.status === 201) {
         console.log("successful");
