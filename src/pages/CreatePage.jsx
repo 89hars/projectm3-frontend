@@ -11,22 +11,33 @@ const CreatePage = () => {
   const [technic, setTechnic] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   // How the submit will be handle
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("submited");
+
     // Payload being send
-    const payload = { title, artist, technic, price, description };
+    // const payload = { title, artist, technic, price, description };
+    const image = event.target.imageUrl.files[0];
+    const payload = new FormData();
+    payload.append("title", title);
+    payload.append("artist", artist);
+    payload.append("technic", technic);
+    payload.append("price", price);
+    payload.append("description", description);
+    payload.append("imageUrl", image);
 
     try {
       const response = await fetch(`http://localhost:5005/products/create`, {
         method: "POST",
+        "Content-Type": "multipart/form-data",
+        body: payload,
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`,
         },
-        body: JSON.stringify(payload),
       });
       if (response.status === 201) {
         console.log("successful");
@@ -42,7 +53,7 @@ const CreatePage = () => {
     <Layouts>
       <div>
         <h1> Create Artwork </h1>
-        <form onSubmit={handleSubmit}>
+        <form encType="multipart/form-data" onSubmit={handleSubmit}>
           <label>
             {" "}
             Title:
@@ -95,6 +106,18 @@ const CreatePage = () => {
               rows={4}
               cols={50}
             />
+          </label>
+
+          <label>
+            <input
+              type="file"
+              name="imageUrl"
+              accept="image/png, image/jpg"
+              onChange={(event) => {
+                setImageUrl(URL.createObjectURL(event.target.files[0]));
+              }}
+            ></input>
+            {imageUrl && <img src={imageUrl} alt="Preview" />}
           </label>
 
           <button type="submit"> Create </button>
