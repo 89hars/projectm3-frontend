@@ -2,9 +2,13 @@ import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
 import Search from './Search'
+import { CartContext } from '../contexts/CartContext'
+
 
 function Header() {
+  const { cart, setCart } = useContext(CartContext)
   const { isLoggedIn, user, logout } = useContext(SessionContext);
+
   const navigate = useNavigate();
   const handleLogout = (e) => {
     e.preventDefault();
@@ -48,7 +52,8 @@ function Header() {
               <>
                 <li className="nav-item">
                   <NavLink to="/cart" className="nav-link">
-                    Cart(0)
+                    Cart ({cart?.length})
+
                   </NavLink>
                 </li>
                 <li className="nav-item dropdown">

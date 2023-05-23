@@ -12,11 +12,10 @@ const CreatePage = () => {
   const [description, setDescription] = useState("");
 
 
-  // How the submit will be handle
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("submited");
-    // Payload being send
+
     const payload = { title, artist, technic, price, description };
 
     try {

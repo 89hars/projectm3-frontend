@@ -1,8 +1,8 @@
 import React from 'react'
 import Layouts from '../components/Layouts'
-import { useSearch } from '../contexts/SearchContext'
+import { SearchContext } from '../contexts/SearchContext';
 function SearchPage() {
-    const { token } = useSearch();
+    const { token, setToken } = useContext(SearchContext)
 
     return (
         <Layouts title={'Search Results'}>

@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Layouts from "../components/Layouts";
+import { CartContext } from '../contexts/CartContext'
+
 
 const Allproducts = () => {
   // Store data
   const [artwork, setArtwork] = useState([]);
+  const { cart, setCart } = useContext(CartContext)
   // Define how to fetch data
   const fetchArtwork = async () => {
     try {
@@ -34,6 +37,8 @@ const Allproducts = () => {
               <Link to={`/details/${eachArt._id}`}>
                 {eachArt.title}
               </Link>
+
+              <button onClick={() => setCart([...cart, eachArt])}>Add to Cart</button>
             </li>
           ))}
         </ul>

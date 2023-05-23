@@ -1,13 +1,23 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Layouts from "../components/Layouts";
+import { useNavigate } from "react-router-dom";
+import { CartContext } from '../contexts/CartContext'
+import { SessionContext } from "../contexts/SessionContext";
+
 
 // Here we handle the delete as buttons.
 
-const DetailsPage = () => {
+const DetailsPage = ({ item }) => {
+  const navigate = useNavigate();
   const { artObjectId } = useParams();
   const [pieceOfArt, setPieceOfArt] = useState();
-  
+  const { cart, setCart } = useContext(CartContext)
+  const { user } = useContext(SessionContext)
+
+
+
+
 
   const fetchPieceOfArt = async () => {
     try {
@@ -23,7 +33,15 @@ const DetailsPage = () => {
       console.log(error);
     }
   };
-
+  const handleAddToCart = async () => {
+    console.log(user, pieceOfArt)
+    const newVar = await fetch(`http://localhost:5005/details/cart`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId: user._id, productId: pieceOfArt._id, quantity: 1, price: pieceOfArt.price }),
+    });
+    setCart([...cart, pieceOfArt])
+  }
   useEffect(() => {
     fetchPieceOfArt();
   }, []);
@@ -40,7 +58,7 @@ const DetailsPage = () => {
         <h2>Technic: {pieceOfArt.technic} </h2>
         <h2>Price: {pieceOfArt.price} </h2>
         <p>Description: {pieceOfArt.description} </p>
-        
+        <button onClick={handleAddToCart}>Add to Cart</button>
       </div>
     </Layouts>
   ) : (
