@@ -36,10 +36,10 @@ const DetailsPage = () => {
     <Layouts>
       <div>
         <h1>{pieceOfArt.title} </h1>
-        <h2>Artist: {pieceOfArt.artist} </h2>
-        <h2>Technic: {pieceOfArt.technic} </h2>
-        <h2>Price: {pieceOfArt.price} </h2>
-        <p>Description: {pieceOfArt.description} </p>
+        <h5>Artist: {pieceOfArt.artist} </h5>
+        <h5>Technic: {pieceOfArt.technic} </h5>
+        <h5>Price: {pieceOfArt.price} </h5>
+        <p> {pieceOfArt.description} </p>
         
       </div>
     </Layouts>
