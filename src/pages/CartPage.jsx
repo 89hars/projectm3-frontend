@@ -16,18 +16,20 @@ function CartPage() {
   const navigate = useNavigate();
   // const { artObjectId } = useParams();
 
-  const fetchPieceOfArt = async () => {
-    try {
-      const response = await fetch(`http://localhost:5005/details/cart`);
-      console.log(response);
-      if (response.status === 200) {
-        const parsed = await response.json();
-        setCartArt(parsed);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    const fetchPieceOfArt = async () => {
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_API}/details/cart`
+            );
+            console.log(response);
+            if (response.status === 200) {
+                const parsed = await response.json();
+                setCartArt(parsed);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
   useEffect(() => {
     fetchPieceOfArt();
