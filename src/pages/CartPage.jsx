@@ -11,7 +11,7 @@ function CartPage() {
 
     const { cart, setCart } = useContext(CartContext);
     const { isLoggedIn, user, token } = useContext(SessionContext);
-    const [cartArt, setCartArt] = useState();
+    const [cartArt, setCartArt] = useState([]);
     const [clientToken, setClientToken] = useState("");
     const [instance, setInstance] = useState("")
     const [loading, setLoading] = useState(false)
@@ -40,18 +40,22 @@ function CartPage() {
 
     const totalPrice = () => {
         try {
-            let total = 0;
-            cart?.map((item) => {
-                total = total + item.price
-            })
-            return total.toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD"
-            })
+            if (cart && cart.length > 0) {
+                let total = 0;
+                cart.forEach((item) => {
+                    total += item.price;
+                });
+                return total.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                });
+            } else {
+                return "$0.00"; // Or any default value you prefer
+            }
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-    }
+    };
 
     const removeCartItem = (pid) => {
         try {
