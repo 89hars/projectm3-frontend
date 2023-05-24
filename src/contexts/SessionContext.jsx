@@ -8,7 +8,7 @@ const SessionContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const verifyToken = async (currentToken) => {
-    const response = await fetch("http://localhost:5005/auth/verify", {
+    const response = await fetch(`${import.meta.env.VITE_API}/auth/verify`, {
       headers: {
         Authorization: `Bearer ${currentToken}`,
       },
