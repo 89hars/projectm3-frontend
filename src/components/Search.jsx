@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { useSearch } from "../contexts/SearchContext";
+import React, { useContext, useState } from 'react';
+import { SearchContext } from '../contexts/SearchContext';
 import { useNavigate } from "react-router-dom";
 
 function Search() {
-    const { token, setToken } = useSearch();
+
+    const { token, setToken } = useContext(SearchContext)
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {

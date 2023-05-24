@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Layouts from "../components/Layouts";
+import { CartContext } from '../contexts/CartContext'
+import { SessionContext } from "../contexts/SessionContext";
 
 const Allproducts = () => {
   // Store process
   const [artwork, setArtwork] = useState([]);
-  // Define how to fetch process
+  const { cart, setCart } = useContext(CartContext)
+  const { user } = useContext(SessionContext);
+  // Define how to fetch data
   const fetchArtwork = async () => {
     try {
       const response = await fetch(
@@ -33,13 +37,23 @@ const Allproducts = () => {
           <ul>
             {artwork.map((eachArt) => (
               <li key={eachArt._id}>
-                <Link to={`/details/${eachArt._id}`}>{eachArt.title}</Link>
-                <img src={eachArt?.media[0]?.link} alt="someStuff" />
-                <p></p>
+                <Link to={`/details/${eachArt._id}`}>
+                  <img src={eachArt?.media[0]?.link} alt="someStuff" />
+                  {eachArt.title}
+                </Link>
+                <button onClick={async () => {
+                  const newVar = await fetch(`http://localhost:5005/details/cart`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ userId: user._id, productId: eachArt._id, quantity: 1, price: eachArt.price }),
+                  });
+                  const parsed = await newVar.json();
+                  console.log(parsed);
+                  setCart([...cart, eachArt]);
+                }}>Add to Cart</button>
               </li>
             ))}
-          </ul>
-        ) : (
+          </ul>) : (
           <div>nothing here</div>
         )}
       </Layouts>

@@ -13,7 +13,6 @@ const CreatePage = () => {
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
-  // How the submit will be handle
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("submited");

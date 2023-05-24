@@ -1,5 +1,5 @@
 import { createContext, useState, useContext } from "react";
-const SearchContext = createContext();
+export const SearchContext = createContext();
 
 const SearchContextProvider = ({ children }) => {
     const [token, setToken] = useState({
@@ -16,5 +16,5 @@ const SearchContextProvider = ({ children }) => {
     );
 };
 
-const useSearch = () => useContext(SearchContext)
-export { useSearch, SearchContextProvider };
+
+export default SearchContextProvider;
