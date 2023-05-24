@@ -108,7 +108,7 @@ function CartPage() {
   const getToken = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5005/details/braintree/token`
+        `${import.meta.env.VITE_API}/details/braintree/token`
       );
       if (response.ok) {
         const data = await response.json();
@@ -128,7 +128,7 @@ function CartPage() {
     try {
       const { nonce } = await instance.requestPaymentMethod();
       const { data } = await fetch(
-        `http://localhost:5005/details/braintree/payment`,
+        `${import.meta.env.VITE_API}/details/braintree/payment`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
