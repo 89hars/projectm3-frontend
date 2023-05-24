@@ -16,8 +16,6 @@ const CreatePage = () => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      console.log("submited");
-
       // Payload being send
       // const payload = { title, artist, technic, price, description };
       const image = event.target.imageUrl.files[0];
@@ -28,7 +26,6 @@ const CreatePage = () => {
       payload.append("price", price);
       payload.append("description", description);
       payload.append("imageUrl", image);
-      console.log(payload);
 
       const response = await fetch(
         `${import.meta.env.VITE_API}/products/create`,
@@ -42,7 +39,6 @@ const CreatePage = () => {
         }
       );
       if (response.status === 201) {
-        console.log("successful");
         const newArtwork = await response.json();
         navigate(`/details/${newArtwork._id}`);
       }

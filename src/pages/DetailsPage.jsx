@@ -1,18 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Layouts from "../components/Layouts";
-import { useNavigate } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
 import { SessionContext } from "../contexts/SessionContext";
 
 // Here we handle the delete as buttons.
 
-const DetailsPage = ({ item }) => {
-  const navigate = useNavigate();
+const DetailsPage = () => {
   const { artObjectId } = useParams();
   const [pieceOfArt, setPieceOfArt] = useState();
   const { cart, setCart } = useContext(CartContext);
-  const { user } = useContext(SessionContext);
+  const { token } = useContext(SessionContext);
 
   const fetchPieceOfArt = async () => {
     try {
@@ -23,35 +21,31 @@ const DetailsPage = ({ item }) => {
       if (response.status === 200) {
         const parsed = await response.json();
         setPieceOfArt(parsed);
-        console.log(parsed);
       }
     } catch (error) {
       console.log(error);
     }
   };
-  const handleAddToCart = async () => {
-    console.log(user, pieceOfArt);
-    const newVar = await fetch(`${import.meta.env.VITE_API}/details/cart`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userId: user._id,
-        productId: pieceOfArt._id,
-        quantity: 1,
-        price: pieceOfArt.price,
-      }),
-    });
-    const parsed = await newVar.json();
-    console.log(parsed);
+  const addProductToCart = async () => {
     setCart([...cart, pieceOfArt]);
+    try {
+      const productId = pieceOfArt._id;
+      await fetch(`${import.meta.env.VITE_API}/cart`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ productId }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   useEffect(() => {
     fetchPieceOfArt();
   }, []);
-
-  useEffect(() => {
-    console.log(pieceOfArt);
-  }, [pieceOfArt]);
 
   return pieceOfArt ? (
     <Layouts>
@@ -62,7 +56,7 @@ const DetailsPage = ({ item }) => {
         <h2>Technic: {pieceOfArt.technic} </h2>
         <h2>Price: {pieceOfArt.price} </h2>
         <p>Description: {pieceOfArt.description} </p>
-        <button onClick={handleAddToCart}>Add to Cart</button>
+        <button onClick={addProductToCart}>Add to Cart</button>
       </div>
     </Layouts>
   ) : (

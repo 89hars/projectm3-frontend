@@ -1,20 +1,20 @@
 import { useContext, useEffect, useState } from "react";
 import { SessionContext } from "../contexts/SessionContext";
 import Layouts from "../components/Layouts";
+import { useSearchParams } from "react-router-dom";
 
 const ProfilePage = () => {
   const { user, token } = useContext(SessionContext);
   const [createdProducts, setCreatedProducts] = useState([]);
-
   const [productIdToDelete, setProductIdToDelete] = useState();
   const [productIdToUpdate, setProductIdToUpdate] = useState();
   const [title, setTitle] = useState("");
   const [technic, setTechnic] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
+  const [queryParameters] = useSearchParams();
 
   const fetchCreatedProducts = async () => {
-    console.log(token);
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API}/products/createdby/${user._id}`
@@ -102,10 +102,14 @@ const ProfilePage = () => {
       <Layouts>
         <div className="container py-3">
           <h1>{`Hello ${user.firstName} ${user.lastName}`}</h1>
+         
+          {queryParameters.get("payment") === "success" && (
+            <div className="alert alert-success">Payment successfully completed</div>
+          )}
 
           <h3 className="mt-4">My products</h3>
 
-          <table className="table">
+          <table className="table align-middle">
             <thead>
               <tr>
                 <th scope="col">Image</th>
