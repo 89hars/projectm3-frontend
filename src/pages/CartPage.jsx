@@ -83,8 +83,39 @@ function CartPage() {
                 }
             );
 
+<<<<<<< HEAD
         } catch (error) {
             console.log(error);
+=======
+  const getToken = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API}/details/braintree/token`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setClientToken(data.clientToken);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getToken();
+    fetchProductsFromCart();
+  }, []);
+
+  const handlePayment = async () => {
+    try {
+      const { nonce } = await instance.requestPaymentMethod();
+      const { data } = await fetch(
+        `${import.meta.env.VITE_API}/details/braintree/payment`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nonce, cart }),
+>>>>>>> af7db8dc24ebbc0a06572ead7626c20ac1bc876b
         }
     };
 
