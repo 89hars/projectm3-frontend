@@ -10,6 +10,22 @@
 /* font-family: 'Playfair Display', serif; */
 
 /* header */
+
+.mainname {
+  font-family: 'Playfair Display', serif;
+}
+
+.btnHome {
+  margin-left: 250px;
+}
+
+.headerName {
+  font-family: 'Playfair Display', serif;
+  margin-left: 20px;
+}
+
+
+
 .home-main {
   background-image: url('/Images/imagesbg.jfif');
   background-repeat: no-repeat;

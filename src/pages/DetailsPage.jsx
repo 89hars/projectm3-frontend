@@ -49,9 +49,9 @@ const DetailsPage = () => {
 
   return pieceOfArt ? (
     <Layouts>
-      <div>
+      <div className="details-page">
         <h1>{pieceOfArt.title} </h1>
-        <img src={pieceOfArt.media[0].link} alt={pieceOfArt.name} /> 
+        <img src={pieceOfArt.media[0].link} alt={pieceOfArt.name} />
         <h2>Artist: {pieceOfArt.artist} </h2>
         <h2>Technic: {pieceOfArt.technic} </h2>
         <h2>Price: {pieceOfArt.price} </h2>

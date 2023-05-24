@@ -46,11 +46,11 @@ const Allproducts = () => {
   }, []);
 
   return (
-    <div>
+    <div className="product-page">
       <Layouts>
-        <h1>All Artworks</h1>
+
         {artwork ? (
-          <ul>
+          <div className="mt-5 row">
             {artwork
               .filter((element) => {
                 if (
@@ -60,17 +60,19 @@ const Allproducts = () => {
                 }
               })
               .map((eachArt) => (
-                <li key={eachArt._id}>
-                  <Link to={`/details/${eachArt._id}`}>{eachArt.title}</Link>
-                  <img src={eachArt?.media[0]?.link} alt={eachArt.title} />
-                  <p></p>
+                <div key={eachArt._id} className="col-md-4">
+                  <div className="col-md-6">
+                    <Link to={`/details/${eachArt._id}`}>{eachArt.title}</Link>
+                    <img src={eachArt?.media[0]?.link} alt={eachArt.title} />
+                    <p></p>
 
-                  <button onClick={() => addProductToCart(eachArt)}>
-                    Add to Cart
-                  </button>
-                </li>
+                    <button className="submit-btn mt-2" onClick={() => addProductToCart(eachArt)}>
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
               ))}
-          </ul>
+          </div>
         ) : (
           <div>Nothing here</div>
         )}

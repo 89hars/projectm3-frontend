@@ -30,8 +30,8 @@ function Header() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <NavLink to="/" className="navbar-brand">
-            Logo
+          <NavLink to="/" className="navbar-brand headerName">
+            ARTS WORLD
           </NavLink>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <Search />
