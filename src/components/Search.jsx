@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { SearchContext } from '../contexts/SearchContext';
 import { useNavigate } from "react-router-dom";
+import { SessionContext } from '../contexts/SessionContext';
 
 function Search() {
 
     const { token, setToken } = useContext(SearchContext)
+    const { search, setSearch } = useContext(SessionContext)
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -29,10 +31,10 @@ function Search() {
                     type="search"
                     placeholder="Search"
                     aria-label="Search"
-                    value={token.keyword}
-                    onChange={(e) => setToken({ ...token, keyword: e.target.value })}
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
                 />
-                <button className="btn btn-outline-secondary me-5 " type="submit">Search</button>
+                <button className="btn btn-outline-secondary me-5 " type="submit" >Search</button>
             </form>
         </div>
     );

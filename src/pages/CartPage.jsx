@@ -98,6 +98,7 @@ function CartPage() {
                 body: JSON.stringify({ nonce, cart }),
             });
             setLoading(false)
+            navigate('/profile')
 
         } catch (error) {
             console.log(error)

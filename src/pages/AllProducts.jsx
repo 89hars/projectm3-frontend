@@ -8,7 +8,7 @@ const Allproducts = () => {
   // Store process
   const [artwork, setArtwork] = useState([]);
   const { cart, setCart } = useContext(CartContext)
-  const { user } = useContext(SessionContext);
+  const { user, search } = useContext(SessionContext);
   // Define how to fetch data
   const fetchArtwork = async () => {
     try {
@@ -35,7 +35,13 @@ const Allproducts = () => {
         <h1>All Artworks</h1>
         {artwork ? (
           <ul>
-            {artwork.map((eachArt) => (
+            {artwork.filter((element) => {
+              if (element.title.toLowerCase().includes(search.toLowerCase())) {
+                return element
+
+              }
+
+            }).map((eachArt) => (
               <li key={eachArt._id}>
                 <Link to={`/details/${eachArt._id}`}>
                   <img src={eachArt?.media[0]?.link} alt="someStuff" />

@@ -6,6 +6,7 @@ const SessionContextProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState("")
 
   const verifyToken = async (currentToken) => {
     const response = await fetch(`${import.meta.env.VITE_API}/auth/verify`, {
@@ -57,6 +58,8 @@ const SessionContextProvider = ({ children }) => {
         isLoggedIn,
         isLoading,
         logout,
+        search,
+        setSearch,
       }}
     >
       {children}

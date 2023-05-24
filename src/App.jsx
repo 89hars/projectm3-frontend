@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "bootstrap";
 import HomePage from "./pages/HomePage";
@@ -13,12 +13,14 @@ import SearchPage from "./pages/SearchPage";
 import ProfilePage from "./pages/ProfilePage";
 
 function App() {
-  /*    const APITestConnection = async () => {
+  /*    const APITestConnection 
+  = async () => {
     const response = await fetch('http://localhost:5005/api')
     const parsed = await response.json()
     console.log(parsed)
   } 
 */
+
   useEffect(() => {
     // APITestConnection()
   }, []);
