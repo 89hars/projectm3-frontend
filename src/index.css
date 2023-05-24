@@ -24,7 +24,10 @@
   margin-left: 20px;
 }
 
-
+.imgallpro {
+  height: 400px;
+  width: 350px;
+}
 
 .home-main {
   background-image: url('/Images/imagesbg.jfif');

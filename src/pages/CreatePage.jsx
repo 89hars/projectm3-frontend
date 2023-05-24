@@ -115,7 +115,7 @@ const CreatePage = () => {
                 setImageUrl(URL.createObjectURL(event.target.files[0]));
               }}
             ></input>
-            {imageUrl && <img src={imageUrl} alt="Preview" />}
+            {imageUrl && <img className="imgallpro" src={imageUrl} alt="Preview" />}
           </label>
 
           <button type="submit"> Create </button>

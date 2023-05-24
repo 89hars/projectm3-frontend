@@ -49,14 +49,20 @@ const DetailsPage = () => {
 
   return pieceOfArt ? (
     <Layouts>
-      <div className="details-page">
-        <h1>{pieceOfArt.title} </h1>
-        <img src={pieceOfArt.media[0].link} alt={pieceOfArt.name} />
-        <h2>Artist: {pieceOfArt.artist} </h2>
-        <h2>Technic: {pieceOfArt.technic} </h2>
-        <h2>Price: {pieceOfArt.price} </h2>
-        <p>Description: {pieceOfArt.description} </p>
-        <button onClick={addProductToCart}>Add to Cart</button>
+      <div className="details-page row d-flex align-items-center justify-content-center">
+        <div className="col-md-6 text-center mt-5">
+          <img className="imgallpro" src={pieceOfArt.media[0].link} alt={pieceOfArt.name} />
+        </div>
+        <div className="col-md-6 text-center">
+          <h1>{pieceOfArt.title} </h1>
+
+          <h2>Artist: {pieceOfArt.artist} </h2>
+          <h2>Technic: {pieceOfArt.technic} </h2>
+          <h2>Price: {pieceOfArt.price} </h2>
+          <p>Description: {pieceOfArt.description} </p>
+          <button className="btn-outline-secondary btn text-dark" onClick={addProductToCart}>Add to Cart</button>
+        </div>
+
       </div>
     </Layouts>
   ) : (
