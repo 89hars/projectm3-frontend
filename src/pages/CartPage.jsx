@@ -17,7 +17,7 @@ function CartPage() {
     const [loading, setLoading] = useState(false)
 
     const navigate = useNavigate();
-    // const { artObjectId } = useParams();
+
 
     const fetchPieceOfArt = async () => {
         try {
@@ -50,7 +50,7 @@ function CartPage() {
                     currency: "USD",
                 });
             } else {
-                return "$0.00"; // Or any default value you prefer
+                return "$0.00";
             }
         } catch (error) {
             console.log(error);

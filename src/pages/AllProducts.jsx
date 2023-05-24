@@ -30,11 +30,12 @@ const Allproducts = () => {
   }, []);
 
   return (
-    <div>
+    <div className="product-page">
       <Layouts>
-        <h1>All Artworks</h1>
+
         {artwork ? (
-          <ul>
+          <div className="mt-5 row">
+
             {artwork.filter((element) => {
               if (element.title.toLowerCase().includes(search.toLowerCase())) {
                 return element
@@ -42,24 +43,26 @@ const Allproducts = () => {
               }
 
             }).map((eachArt) => (
-              <li key={eachArt._id}>
-                <Link to={`/details/${eachArt._id}`}>
-                  <img src={eachArt?.media[0]?.link} alt="someStuff" />
-                  {eachArt.title}
-                </Link>
-                <button onClick={async () => {
-                  const newVar = await fetch(`http://localhost:5005/details/cart`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ userId: user._id, productId: eachArt._id, quantity: 1, price: eachArt.price }),
-                  });
-                  const parsed = await newVar.json();
-                  console.log(parsed);
-                  setCart([...cart, eachArt]);
-                }}>Add to Cart</button>
-              </li>
+              <div key={eachArt._id} className="col-md-4">
+                <div className="col-md-6">
+                  <Link to={`/details/${eachArt._id}`} className="linkProduct">
+                    <img src={eachArt?.media[0]?.link} alt="someStuff" />
+                    {eachArt.title}
+                  </Link>
+                  <button className="submit-btn mt-2" onClick={async () => {
+                    const newVar = await fetch(`http://localhost:5005/details/cart`, {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ userId: user._id, productId: eachArt._id, quantity: 1, price: eachArt.price }),
+                    });
+                    const parsed = await newVar.json();
+                    console.log(parsed);
+                    setCart([...cart, eachArt]);
+                  }}>Add to Cart</button>
+                </div>
+              </div>
             ))}
-          </ul>) : (
+          </div>) : (
           <div>nothing here</div>
         )}
       </Layouts>
