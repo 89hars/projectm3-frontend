@@ -24,10 +24,11 @@ const DetailsPage = ({ item }) => {
       const response = await fetch(
         `http://localhost:5005/details/details/${artObjectId}`
       );
-      console.log(response);
+
       if (response.status === 200) {
         const parsed = await response.json();
         setPieceOfArt(parsed);
+        console.log(parsed);
       }
     } catch (error) {
       console.log(error);
@@ -56,6 +57,7 @@ const DetailsPage = ({ item }) => {
     <Layouts>
       <div>
         <h1>{pieceOfArt.title} </h1>
+        <img src={pieceOfArt.media[0].link} alt="someStuff" />
         <h2>Artist: {pieceOfArt.artist} </h2>
         <h2>Technic: {pieceOfArt.technic} </h2>
         <h2>Price: {pieceOfArt.price} </h2>

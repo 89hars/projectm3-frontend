@@ -1,28 +1,41 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Layouts from "../components/Layouts";
-
+import { SessionContext } from "../contexts/SessionContext";
 
 const CreatePage = () => {
+  const { token } = useContext(SessionContext);
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [technic, setTechnic] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
-
+  const [imageUrl, setImageUrl] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("submited");
 
-    const payload = { title, artist, technic, price, description };
+    // Payload being send
+    // const payload = { title, artist, technic, price, description };
+    const image = event.target.imageUrl.files[0];
+    const payload = new FormData();
+    payload.append("title", title);
+    payload.append("artist", artist);
+    payload.append("technic", technic);
+    payload.append("price", price);
+    payload.append("description", description);
+    payload.append("imageUrl", image);
 
     try {
-      const response = await fetch(`http://localhost:5005/details/create`, {
+      const response = await fetch(`http://localhost:5005/products/create`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        "Content-Type": "multipart/form-data",
+        body: payload,
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
       });
       if (response.status === 201) {
         console.log("successful");
@@ -38,7 +51,7 @@ const CreatePage = () => {
     <Layouts>
       <div>
         <h1> Create Artwork </h1>
-        <form onSubmit={handleSubmit}>
+        <form encType="multipart/form-data" onSubmit={handleSubmit}>
           <label>
             {" "}
             Title:
@@ -91,6 +104,18 @@ const CreatePage = () => {
               rows={4}
               cols={50}
             />
+          </label>
+
+          <label>
+            <input
+              type="file"
+              name="imageUrl"
+              accept="image/png, image/jpg"
+              onChange={(event) => {
+                setImageUrl(URL.createObjectURL(event.target.files[0]));
+              }}
+            ></input>
+            {imageUrl && <img src={imageUrl} alt="Preview" />}
           </label>
 
           <button type="submit"> Create </button>
