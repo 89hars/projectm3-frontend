@@ -48,7 +48,7 @@ const Allproducts = () => {
                 <p></p>
               
                 <button onClick={async () => {
-                  const newVar = await fetch(`http://localhost:5005/details/cart`, {
+                  const newVar = await fetch(`${import.meta.env.VITE_API}/details/cart`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ userId: user._id, productId: eachArt._id, quantity: 1, price: eachArt.price }),

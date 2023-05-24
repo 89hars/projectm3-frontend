@@ -22,7 +22,7 @@ function CartPage() {
     const fetchPieceOfArt = async () => {
         try {
             const response = await fetch(
-                `http://localhost:5005/details/cart`
+                `${import.meta.env.VITE_API}/details/cart`
             );
             console.log(response);
             if (response.status === 200) {
