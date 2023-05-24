@@ -2,20 +2,22 @@ import React, { useState, useEffect, useContext } from 'react'
 import Layouts from '../components/Layouts'
 import { CartContext } from '../contexts/CartContext'
 import { useNavigate, Link } from "react-router-dom";
+import DropIn from "braintree-web-drop-in-react";
+import { SessionContext } from '../contexts/SessionContext';
 
 
 
 function CartPage() {
 
-    const { cart, setCart } = useContext(CartContext)
+    const { cart, setCart } = useContext(CartContext);
+    const { isLoggedIn, user, token } = useContext(SessionContext);
+    const [cartArt, setCartArt] = useState();
+    const [clientToken, setClientToken] = useState("");
+    const [instance, setInstance] = useState("")
+    const [loading, setLoading] = useState(false)
+
     const navigate = useNavigate();
     // const { artObjectId } = useParams();
-    const [cartArt, setCartArt] = useState();
-
-
-
-
-
 
     const fetchPieceOfArt = async () => {
         try {
@@ -61,6 +63,43 @@ function CartPage() {
             console.log(error)
         }
     }
+
+    const getToken = async () => {
+        try {
+            const response = await fetch(
+                `http://localhost:5005/details/braintree/token`
+            );
+            if (response.ok) {
+                const data = await response.json();
+                console.log('data :', data)
+                setClientToken(data.clientToken)
+
+            }
+            else { console.log('Failed to retrieve client token'); }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(() => {
+        getToken()
+    }, [isLoggedIn])
+
+    const handlePayment = async () => {
+        try {
+            setLoading(true)
+            const { nonce } = await instance.requestPaymentMethod()
+            const { data } = await await fetch(`http://localhost:5005/details/braintree/payment`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nonce, cart }),
+            });
+            setLoading(false)
+
+        } catch (error) {
+            console.log(error)
+
+        }
+    }
     return (
         <Layouts>
             <div className='container'>
@@ -94,7 +133,25 @@ function CartPage() {
                         <p >Total | Checkout | Payment</p>
                         <hr />
                         <h4 >Total:{totalPrice()}</h4>
+                        {clientToken && (
+                            <div className='mt-2'>
+                                <DropIn
+                                    options={{
+                                        authorization: clientToken,
+                                        paypal: {
+                                            flow: 'vault'
+                                        }
+                                    }}
+                                    onInstance={instance => setInstance(instance)}
+                                />
+                                <button className='btn btn-primary' onClick={handlePayment} >
+                                    Make Payment
+                                </button>
+                            </div>
+                        )}
+
                     </div>
+
                 </div>
 
             </div>

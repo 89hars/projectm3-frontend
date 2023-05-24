@@ -40,6 +40,8 @@ const DetailsPage = ({ item }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId: user._id, productId: pieceOfArt._id, quantity: 1, price: pieceOfArt.price }),
     });
+    const parsed = await newVar.json()
+    console.log(parsed)
     setCart([...cart, pieceOfArt])
   }
   useEffect(() => {
