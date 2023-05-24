@@ -46,10 +46,7 @@ const Allproducts = () => {
                 <Link to={`/details/${eachArt._id}`}>{eachArt.title}</Link>
                 <img src={eachArt?.media[0]?.link} alt={eachArt.title}/>
                 <p></p>
-                <Link to={`/details/${eachArt._id}`}>
-                  <img src={eachArt?.media[0]?.link} alt="someStuff" />
-                  {eachArt.title}
-                </Link>
+              
                 <button onClick={async () => {
                   const newVar = await fetch(`http://localhost:5005/details/cart`, {
                     method: "POST",
