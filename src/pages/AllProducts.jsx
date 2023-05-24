@@ -43,6 +43,9 @@ const Allproducts = () => {
 
             }).map((eachArt) => (
               <li key={eachArt._id}>
+                <Link to={`/details/${eachArt._id}`}>{eachArt.title}</Link>
+                <img src={eachArt?.media[0]?.link} alt={eachArt.title}/>
+                <p></p>
                 <Link to={`/details/${eachArt._id}`}>
                   <img src={eachArt?.media[0]?.link} alt="someStuff" />
                   {eachArt.title}
