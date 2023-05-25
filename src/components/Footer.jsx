@@ -1,17 +1,56 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Footer() {
-    return (
-        <div className='footer' >
-            <h3 className='text-center'>Project3 &copy; Ironhack</h3>
-            <p className='text-center mt-3'>
-                <Link to='/about'>About</Link> |
-                <Link to='/contact'>Contact</Link> |
-                <Link to='/privacy'>Privacy Policy</Link>
-            </p>
+  return (
+    <div className="footer">
+      <div className="container small">
+        <div className="row justify-content-around">
+          <div className="col-3">
+            <div className="h4">Finest deal</div>
+            <div className="text-secondary">
+              Unique pieces by small creator to make your interior the finest.
+            </div>
+          </div>
+          <div className="col-2">
+            <div className="h4  mb-3">Quick links</div>
+            <div>
+              <Link to="/" className="text-secondary">
+                Home page
+              </Link>
+            </div>
+            <div>
+              <Link to="/allproducts" className="text-secondary">
+                All products
+              </Link>
+            </div>
+            <div>
+              <Link to="/about" className="text-secondary">
+                About
+              </Link>
+            </div>
+            <div>
+              <Link to="/privacy" className="text-secondary">
+                Privacy Policy
+              </Link>
+            </div>
+          </div>
+          <div className="col-3">
+            <div className="h4 mb-3">Our socials</div>
+            <button className="btn btn-sm btn-light me-2">
+              <i className="bi bi-facebook"></i>
+            </button>
+            <button className="btn btn-sm btn-light me-2">
+              <i className="bi bi-instagram"></i>
+            </button>
+            <button className="btn btn-sm btn-light me-2">
+              <i className="bi bi-twitter"></i>
+            </button>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
-export default Footer
+export default Footer;

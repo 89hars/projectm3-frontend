@@ -176,6 +176,40 @@ const ProfilePage = () => {
             </tbody>
           </table>
 
+          <h3 className="mt-4">My Orders</h3>
+
+<table className="table align-middle">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Technic</th>
+      <th scope="col">Price</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {productPurchased.map((product) => (
+      <tr key={product._id}>
+        <td>
+          <img
+            src={product?.media[0]?.link}
+            alt="someStuff"
+            width={100}
+          />
+        </td>
+        <td>{product.title}</td>
+        <td style={{ maxWidth: 500 }}>{product.description}</td>
+        <td>{product.technic}</td>
+        <td>{product.price}</td>
+        <td className="text-end">
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
           <div
             className="modal fade"
             id="editModal"

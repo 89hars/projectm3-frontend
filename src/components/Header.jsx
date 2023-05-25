@@ -1,12 +1,10 @@
 import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
-import Search from './Search'
-import { CartContext } from '../contexts/CartContext'
-
+import { CartContext } from "../contexts/CartContext";
 
 function Header() {
-  const { cart, setCart } = useContext(CartContext)
+  const { cart } = useContext(CartContext);
   const { isLoggedIn, user, logout } = useContext(SessionContext);
 
   const navigate = useNavigate();
@@ -17,8 +15,8 @@ function Header() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-      <div className="container-fluid">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary py-4 border-bottom bg-white text-uppercase">
+      <div className="container">
         <button
           className="navbar-toggler"
           type="button"
@@ -31,13 +29,12 @@ function Header() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <NavLink to="/" className="navbar-brand">
-            Logo
+          <NavLink to="/" className="navbar-brand fw-bold me-4">
+            Finest deal
           </NavLink>
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <Search />
+          <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <NavLink to="/" className="nav-link">
+              <NavLink to="/" className="nav-link me-4">
                 Home
               </NavLink>
             </li>
@@ -46,12 +43,19 @@ function Header() {
                 Products
               </NavLink>
             </li>
+          </ul>
+          <ul className="navbar-nav ms-auto">
             {isLoggedIn ? (
               <>
                 <li className="nav-item">
-                  <NavLink to="/cart" className="nav-link">
-                    Cart ({cart?.length})
-
+                  <NavLink
+                    to="/cart"
+                    className="nav-link me-4 position-relative"
+                  >
+                    <i className="bi-cart"></i> Cart
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                      {cart?.length}
+                    </span>
                   </NavLink>
                 </li>
                 <li className="nav-item dropdown">
@@ -63,7 +67,12 @@ function Header() {
                   >
                     Hello {user.firstName}
                   </NavLink>
-                  <ul className="dropdown-menu">
+                  <ul className="dropdown-menu dropdown-menu-end">
+                  <li>
+                      <NavLink className="dropdown-item" to="/create">
+                        Create
+                      </NavLink>
+                    </li> 
                     <li>
                       <NavLink className="dropdown-item" to="/profile">
                         Profile
@@ -80,13 +89,13 @@ function Header() {
             ) : (
               <>
                 <li className="nav-item">
-                  <NavLink to="/signup" className="nav-link">
-                    Signup
+                  <NavLink to="/login" className="nav-link me-4">
+                    Login
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/login" className="nav-link">
-                    Login
+                  <NavLink to="/signup" className="btn btn-primary">
+                    Signup
                   </NavLink>
                 </li>
               </>

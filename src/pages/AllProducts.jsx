@@ -1,13 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Layouts from "../components/Layouts";
-import { CartContext } from '../contexts/CartContext'
+import { CartContext } from "../contexts/CartContext";
 import { SessionContext } from "../contexts/SessionContext";
+import Search from "../components/Search";
 
 const Allproducts = () => {
   // Store process
   const [artwork, setArtwork] = useState([]);
-  const { cart, setCart } = useContext(CartContext)
+  const { cart, setCart } = useContext(CartContext);
   const { user, search } = useContext(SessionContext);
   // Define how to fetch data
   const fetchArtwork = async () => {
@@ -32,36 +33,87 @@ const Allproducts = () => {
   return (
     <div>
       <Layouts>
-        <h1>All Artworks</h1>
-        {artwork ? (
-          <ul>
-            {artwork.filter((element) => {
-              if (element.title.toLowerCase().includes(search.toLowerCase())) {
-                return element
+        <div className="container py-5">
+          <div className="row">
+            <div className="col-8">
+              <div>
+                <h1>All Products</h1>
+              </div>
+            </div>
+            <div className="col-4">
+              <Search />
+            </div>
+          </div>
+        </div>
 
-              }
+        <div className="container py-5">
+          <div className="row">
+            <div className="col-4"></div>
+          </div>
+        </div>
 
-            }).map((eachArt) => (
-              <li key={eachArt._id}>
-                <Link to={`/details/${eachArt._id}`}>{eachArt.title}</Link>
-                <img src={eachArt?.media[0]?.link} alt={eachArt.title}/>
-                <p></p>
-              
-                <button onClick={async () => {
-                  const newVar = await fetch(`http://localhost:5005/details/cart`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ userId: user._id, productId: eachArt._id, quantity: 1, price: eachArt.price }),
-                  });
-                  const parsed = await newVar.json();
-                  console.log(parsed);
-                  setCart([...cart, eachArt]);
-                }}>Add to Cart</button>
-              </li>
-            ))}
-          </ul>) : (
-          <div>nothing here</div>
-        )}
+        <div className="container">
+          {artwork ? (
+            <div className="row">
+              {artwork
+                .filter((element) => {
+                  if (
+                    element.title.toLowerCase().includes(search.toLowerCase())
+                  ) {
+                    return element;
+                  }
+                })
+                .map((eachArt) => (
+                  <div className="col-4" key={eachArt._id}>
+                    <div className="card">
+                      <img
+                        src={eachArt?.media[0]?.link}
+                        alt={eachArt.title}
+                        className="card-img-top"
+                      />
+                      <div className="card-body">
+                        <Link
+                          className="card-title"
+                          to={`/details/${eachArt._id}`}
+                        >
+                          {eachArt.title}
+                        </Link>
+                        <p className="card-text">{eachArt.artist}</p>
+                        <p className="card-text">{eachArt.price}</p>
+                        <button
+                          className="btn btn-primary"
+                          onClick={async () => {
+                            const newVar = await fetch(
+                              `http://localhost:5005/details/cart`,
+                              {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                  userId: user._id,
+                                  productId: eachArt._id,
+                                  quantity: 1,
+                                  price: eachArt.price,
+                                }),
+                              }
+                            );
+                            const parsed = await newVar.json();
+                            console.log(parsed);
+                            setCart([...cart, eachArt]);
+                          }}
+                        >
+                          Add to Cart
+                        </button>
+                      </div>
+                    </div>
+
+                    <p></p>
+                  </div>
+                ))}
+            </div>
+          ) : (
+            <div>nothing here</div>
+          )}
+        </div>
       </Layouts>
     </div>
   );
