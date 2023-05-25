@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react'
-import Layouts from '../components/Layouts'
-import { CartContext } from '../contexts/CartContext'
+import React, { useState, useEffect, useContext } from "react";
+import Layouts from "../components/Layouts";
+import { CartContext } from "../contexts/CartContext";
 import { useNavigate, Link } from "react-router-dom";
 import DropIn from "braintree-web-drop-in-react";
 import { SessionContext } from '../contexts/SessionContext';
