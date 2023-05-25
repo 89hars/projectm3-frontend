@@ -23,37 +23,37 @@
 # Data Structure
 
 ├── middleware
-│   ├── PrivateRoute.jsx
+│   └── PrivateRoute.jsx
 ├── node_modules
 ├── public
 │   ├── Images
-│   ├── _redirects
+│   └── _redirects
 ├── src
 │   ├── assets
-│   │     └──  react.svg
+│   │   └── react.svg
 │   ├── components
-│   │   └── Footer.jsx
-│   │   └── Header.jsx
-│   │   └── Layouts.jsx
-│   │   └── Search.jsx
+│   │   ├── Footer.jsx
+│   │   ├── Header.jsx
+│   │   ├── Layouts.jsx
+│   │   ├── Search.jsx
 │   │   └── TableOfProducts.jsx
 │   ├── context
-│   │   └── CartContext.jsx
-│   │   └── SearchContext.jsx
+│   │   ├── CartContext.jsx
+│   │   ├── SearchContext.jsx
 │   │   └── SessionContext.jsx
 │   ├── pages
-│   │    └── About.jsx
-│   │    └── Products.jsx
-│   │    └── Cart.jsx
-│   │    └── Contact.jsx
-│   │    └── Create.jsx
-│   │    └── Details.jsx
-│   │    └── Home.jsx
-│   │    └── Login.jsx
-│   │    └── Privacy.jsx
-│   │    └── Profile.jsx
-│   │    └── Search.jsx
-│   │    └──Signup.jsx              
+│   │   ├── About.jsx
+│   │   ├── Products.jsx
+│   │   ├── Cart.jsx
+│   │   ├── Contact.jsx
+│   │   ├── Create.jsx
+│   │   ├── Details.jsx
+│   │   ├── Home.jsx
+│   │   ├── Login.jsx
+│   │   ├── Privacy.jsx
+│   │   ├── Profile.jsx
+│   │   ├── Search.jsx
+│   │   └── Signup.jsx
 ├── app.jsx
 ├── index.css
 ├── main.jsx
@@ -62,4 +62,4 @@
 ├── .gitignore
 ├── index.html
 ├── package-loc.json
-├── vite.config.js
+└── vite.config.js
