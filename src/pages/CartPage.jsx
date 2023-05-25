@@ -1,166 +1,229 @@
-import React, { useState, useEffect, useContext } from "react";
-import Layouts from "../components/Layouts";
-import { CartContext } from "../contexts/CartContext";
+import React, { useState, useEffect, useContext } from 'react'
+import Layouts from '../components/Layouts'
+import { CartContext } from '../contexts/CartContext'
 import { useNavigate, Link } from "react-router-dom";
 import DropIn from "braintree-web-drop-in-react";
-import { SessionContext } from "../contexts/SessionContext";
+import { SessionContext } from '../contexts/SessionContext';
 
 function CartPage() {
-  const { cart, setCart } = useContext(CartContext);
-  const { isLoggedIn, user, token } = useContext(SessionContext);
-  const [cartArt, setCartArt] = useState([]);
-  const [clientToken, setClientToken] = useState("");
-  const [instance, setInstance] = useState("");
-  const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+    const { cart, setCart } = useContext(CartContext);
+    const { token } = useContext(SessionContext);
+    const [clientToken, setClientToken] = useState("");
+    const [instance, setInstance] = useState("");
 
-  const navigate = useNavigate();
-  // const { artObjectId } = useParams();
+    //new code
+    const [products, setProducts] = useState([]);
 
-  const fetchPieceOfArt = async () => {
-    try {
-      const response = await fetch(`http://localhost:5005/details/cart`);
-      console.log(response);
-      if (response.status === 200) {
-        const parsed = await response.json();
-        setCartArt(parsed);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    const fetchProductsFromCart = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API}/cart`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            if (response.status === 200) {
+                const parsed = await response.json();
 
-  useEffect(() => {
-    fetchPieceOfArt();
-  }, []);
+                let productsformat = parsed
+                    .filter((c) => {
+                        return c.product?._id;
+                    })
+                    .map((c) => {
+                        let prodFormat = { ...c.product, cartId: c._id };
+                        return prodFormat;
+                    });
 
-  const totalPrice = () => {
-    try {
-      if (cart && cart.length > 0) {
-        let total = 0;
-        cart.forEach((item) => {
-          total += item.price;
-        });
-        return total.toLocaleString("en-US", {
-          style: "currency",
-          currency: "USD",
-        });
-      } else {
-        return "$0.00"; // Or any default value you prefer
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const removeCartItem = (pid) => {
-    try {
-      let myCart = [...cart];
-      let index = myCart.findIndex((item) => item._id === pid);
-      myCart.splice(index, 1);
-      setCart(myCart);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getToken = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:5005/details/braintree/token`
-      );
-      if (response.ok) {
-        const data = await response.json();
-        console.log("data :", data);
-        setClientToken(data.clientToken);
-      } else {
-        console.log("Failed to retrieve client token");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getToken();
-  }, [isLoggedIn]);
-
-  const handlePayment = async () => {
-    try {
-      setLoading(true);
-      const { nonce } = await instance.requestPaymentMethod();
-      const { data } = await await fetch(
-        `http://localhost:5005/details/braintree/payment`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ nonce, cart }),
+                setCart(productsformat);
+                setProducts(productsformat);
+            }
+        } catch (error) {
+            console.log(error);
         }
-      );
-      setLoading(false);
-      navigate("/profile");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  return (
-    <Layouts>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <h2 className="text-center bg-light p-2 mb-1">Hello..</h2>
-            <h3 className="text-center">{`Your cart contains ${cart.length} items`}</h3>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-9">
-            {cart?.map((eachArt, index) => (
-              <div className="row" key={index}>
-                <div className="col-md-8">
-                  <img
-                    src={eachArt?.media[0]?.link}
-                    alt="someStuff"
-                    width={100}
-                  />
-                </div>
-                <div className="col-md-4">
-                  <h4>{eachArt.title}</h4>
-                  <p>{eachArt.description}</p>
-                  <p> Price : {eachArt.price}</p>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => removeCartItem(eachArt._id)}
-                  >
-                    Remove
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="col-md-3 text-center">
-            <h3>Cart Summary</h3>
-            <p>Total | Checkout | Payment</p>
-            <hr />
-            <h4>Total:{totalPrice()}</h4>
-            {clientToken && (
-              <div className="mt-2">
-                <DropIn
-                  options={{
-                    authorization: clientToken,
-                    paypal: {
-                      flow: "vault",
+    };
+
+    const deleteProductFromCart = async (cartId) => {
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_API}/cart/${cartId}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
                     },
-                  }}
-                  onInstance={(instance) => setInstance(instance)}
-                />
-                <button className="btn btn-primary" onClick={handlePayment}>
-                  Make Payment
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </Layouts>
-  );
+                }
+            );
+            if (response.status === 200) {
+                setProducts((prevProducts) => {
+                    let result = prevProducts.filter(
+                        (product) => product.cartId !== cartId
+                    );
+                    setCart(result);
+                    return result;
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const deleteMyCart = async () => {
+        try {
+            await fetch(
+                `${import.meta.env.VITE_API}/cart`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const getTotalPrice = () => {
+        try {
+            if (products.length > 0) {
+                let total = 0;
+                products.forEach((item) => {
+                    total += item.price;
+                });
+                return total.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                });
+            } else {
+                return "$0.00"; // Or any default value you prefer
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const getToken = async () => {
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_API}/details/braintree/token`
+            );
+            if (response.ok) {
+                const data = await response.json();
+                setClientToken(data.clientToken);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getToken();
+        fetchProductsFromCart();
+    }, []);
+
+    const handlePayment = async () => {
+        try {
+            const { nonce } = await instance.requestPaymentMethod();
+            const { data } = await fetch(
+                `${import.meta.env.VITE_API}/details/braintree/payment`,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ nonce, cart }),
+                }
+            );
+            deleteMyCart()
+            setCart([]);
+            navigate("/profile?payment=success");
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    return (
+        <Layouts>
+            <div className="container">
+                <div className="row my-5">
+                    <div className="col-md-8">
+                        <h3 className="">{`Your cart contains ${cart.length} products`}</h3>
+                        <table className="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Title & description</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {products.map((product, index) => (
+                                    <tr key={index + product._id}>
+                                        <td style={{ width: 120 }}>
+                                            <img
+                                                src={product.media[0]?.link}
+                                                alt="someStuff"
+                                                width={100}
+                                            />
+                                        </td>
+                                        <td>
+                                            <div className="fw-bold">{product.title}</div>
+                                            <div>{product.description}</div>
+                                        </td>
+                                        <td className="fw-bold text-end">{`$${product.price}`}</td>
+                                        <td className="text-end">
+                                            <div className=" d-flex align-items-center justify-content-center h-100">
+                                                <button
+                                                    onClick={() => deleteProductFromCart(product.cartId)}
+                                                    className="btn btn-danger btn-sm"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div className="col-md-4">
+                        <div className="card p-3 bg-light border-0">
+                            <div className="card-body">
+                                <h3>Cart Summary</h3>
+                                <p>Total | Checkout | Payment</p>
+                                <hr />
+                                <h4>{getTotalPrice()}</h4>
+                                {clientToken && (
+                                    <div className="mt-2">
+                                        <DropIn
+                                            options={{
+                                                authorization: clientToken,
+                                                paypal: {
+                                                    flow: "vault",
+                                                },
+                                            }}
+                                            onInstance={(instance) => setInstance(instance)}
+                                        />
+                                        <div className="text-end">
+                                            <button
+                                                className="btn btn-primary"
+                                                onClick={handlePayment}
+                                            >
+                                                Make Payment
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Layouts>
+    );
 }
 
 export default CartPage;

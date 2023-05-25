@@ -6,11 +6,11 @@ import { SessionContext } from "../contexts/SessionContext";
 import Search from "../components/Search";
 
 const Allproducts = () => {
-  // Store process
+
   const [artwork, setArtwork] = useState([]);
   const { cart, setCart } = useContext(CartContext);
-  const { user, search } = useContext(SessionContext);
-  // Define how to fetch data
+  const { token, search } = useContext(SessionContext);
+
   const fetchArtwork = async () => {
     try {
       const response = await fetch(
@@ -19,19 +19,35 @@ const Allproducts = () => {
       if (response.status === 200) {
         const parsed = await response.json();
         setArtwork(parsed);
-        console.log(parsed);
       }
     } catch (error) {
       console.log(error);
     }
   };
-  // Fetch at the right time
+
+  const addProductToCart = async (product) => {
+    setCart([...cart, product]);
+    try {
+      const productId = product._id;
+      await fetch(`${import.meta.env.VITE_API}/cart`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ productId }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchArtwork();
   }, []);
 
   return (
-    <div>
+    <div className="product-page">
       <Layouts>
         <div className="container py-5">
           <div className="row">
@@ -82,24 +98,7 @@ const Allproducts = () => {
                         <p className="card-text">{eachArt.price}</p>
                         <button
                           className="btn btn-primary"
-                          onClick={async () => {
-                            const newVar = await fetch(
-                              `http://localhost:5005/details/cart`,
-                              {
-                                method: "POST",
-                                headers: { "Content-Type": "application/json" },
-                                body: JSON.stringify({
-                                  userId: user._id,
-                                  productId: eachArt._id,
-                                  quantity: 1,
-                                  price: eachArt.price,
-                                }),
-                              }
-                            );
-                            const parsed = await newVar.json();
-                            console.log(parsed);
-                            setCart([...cart, eachArt]);
-                          }}
+                          onClick={() => addProductToCart(eachArt)}
                         >
                           Add to Cart
                         </button>

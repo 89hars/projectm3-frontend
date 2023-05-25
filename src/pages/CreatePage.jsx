@@ -14,31 +14,31 @@ const CreatePage = () => {
   const [imageUrl, setImageUrl] = useState("");
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    console.log("submited");
-
-    // Payload being send
-    // const payload = { title, artist, technic, price, description };
-    const image = event.target.imageUrl.files[0];
-    const payload = new FormData();
-    payload.append("title", title);
-    payload.append("artist", artist);
-    payload.append("technic", technic);
-    payload.append("price", price);
-    payload.append("description", description);
-    payload.append("imageUrl", image);
-
     try {
-      const response = await fetch(`${import.meta.env.VITE_API}/products/create`, {
-        method: "POST",
-        "Content-Type": "multipart/form-data",
-        body: payload,
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      });
+      event.preventDefault();
+      // Payload being send
+      // const payload = { title, artist, technic, price, description };
+      const image = event.target.imageUrl.files[0];
+      const payload = new FormData();
+      payload.append("title", title);
+      payload.append("artist", artist);
+      payload.append("technic", technic);
+      payload.append("price", price);
+      payload.append("description", description);
+      payload.append("imageUrl", image);
+
+      const response = await fetch(
+        `${import.meta.env.VITE_API}/products/create`,
+        {
+          method: "POST",
+          "Content-Type": "multipart/form-data",
+          body: payload,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (response.status === 201) {
-        console.log("successful");
         const newArtwork = await response.json();
         navigate(`/details/${newArtwork._id}`);
       }
@@ -115,7 +115,7 @@ const CreatePage = () => {
                 setImageUrl(URL.createObjectURL(event.target.files[0]));
               }}
             ></input>
-            {imageUrl && <img src={imageUrl} alt="Preview" />}
+            {imageUrl && <img className="imgallpro" src={imageUrl} alt="Preview" />}
           </label>
 
           <button type="submit"> Create </button>

@@ -85,6 +85,17 @@ function Header() {
                     </li>
                   </ul>
                 </li>
+                <div className="d-flex">
+                  <button
+                    className="btn btn-primary btn-sm px-3 mx-2"
+                    type="button"
+                    onClick={() => {
+                      navigate("/create");
+                    }}
+                  >
+                    Create
+                  </button>
+                </div>
               </>
             ) : (
               <>
