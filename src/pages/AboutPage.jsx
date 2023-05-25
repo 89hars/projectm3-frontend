@@ -1,7 +1,9 @@
 import React from "react";
+import "bootstrap";
 
 function AboutPage() {
   return (
+    
     <div>
       About
       <p>
@@ -30,6 +32,7 @@ function AboutPage() {
         [Shop Name] - Where Art Comes Alive
       </p>
     </div>
+    
   );
 }
 
