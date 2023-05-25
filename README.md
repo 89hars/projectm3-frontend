@@ -1,4 +1,4 @@
-# FinestDea.
+# FinestDeal.
 
 # General
 * App based on React.
