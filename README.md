@@ -21,5 +21,6 @@
 
 
 # Data Structure
+![Sin título](https://github.com/89hars/projectm3-frontend/assets/120141140/505e48f1-1dda-4d5d-9580-4d923097ab4f)
 
-![Sin título](https://github.com/89hars/projectm3-frontend/assets/120141140/b465bbf7-368e-40c1-a152-0982d9209ee7)
+
