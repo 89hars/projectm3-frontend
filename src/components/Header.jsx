@@ -15,7 +15,7 @@ function Header() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary py-4 border-bottom bg-white text-uppercase">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary py-4 border-bottom bg-white">
       <div className="container">
         <button
           className="navbar-toggler"
@@ -60,24 +60,20 @@ function Header() {
                 </li>
                 <li className="nav-item dropdown">
                   <NavLink
-                    className="nav-link dropdown-toggle"
+                    className="nav-link dropdown-toggle me-3"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    Hello {user.firstName}
+                    Hello {user?.firstName}
                   </NavLink>
                   <ul className="dropdown-menu dropdown-menu-end">
-                  <li>
-                      <NavLink className="dropdown-item" to="/create">
-                        Create
-                      </NavLink>
-                    </li> 
                     <li>
                       <NavLink className="dropdown-item" to="/profile">
                         Profile
                       </NavLink>
                     </li>
+                    <li><hr className="dropdown-divider" /></li>
                     <li>
                       <a className="dropdown-item" onClick={handleLogout}>
                         Logout
@@ -87,13 +83,13 @@ function Header() {
                 </li>
                 <div className="d-flex">
                   <button
-                    className="btn btn-primary btn-sm px-3 mx-2"
+                    className="btn btn-primary"
                     type="button"
                     onClick={() => {
                       navigate("/create");
                     }}
                   >
-                    Create
+                    Create Artwork
                   </button>
                 </div>
               </>

@@ -49,77 +49,90 @@ const CreatePage = () => {
 
   return (
     <Layouts>
-      <div>
-        <h1> Create Artwork </h1>
-        <form encType="multipart/form-data" onSubmit={handleSubmit}>
-          <label>
-            {" "}
-            Title:
-            <input
-              value={title}
-              onChange={(event) => {
-                setTitle(event.target.value);
-              }}
-            />
-          </label>
+      <div className="my-5 w-100">
+        <h1 className="text-center mb-4 text-primary"> Create Artwork </h1>
+        <div className="d-flex align-items-center justify-content-center ">
+          <div className="card shadow border-0 p-4" style={{ width: 500 }}>
+            <div className="card-body ">
+              <form encType="multipart/form-data" onSubmit={handleSubmit}>
+                <label className="my-2 text-secondary small">Title:</label>
+                <input
+                  className="form-control"
+                  placeholder="Enter a title"
+                  value={title}
+                  onChange={(event) => {
+                    setTitle(event.target.value);
+                  }}
+                />
 
-          <label>
-            {" "}
-            Artist:
-            <input
-              value={artist}
-              onChange={(event) => {
-                setArtist(event.target.value);
-              }}
-            />
-          </label>
+                <div className="row my-2">
+                  <div className="col-6">
+                    <label className="my-2 text-secondary small">Artist:</label>
+                    <input
+                      placeholder="Enter an artist"
+                      className="form-control"
+                      value={artist}
+                      onChange={(event) => {
+                        setArtist(event.target.value);
+                      }}
+                    />
+                  </div>
+                  <div className="col-6">
+                    <label className="my-2 text-secondary small">Technic:</label>
+                    <input
+                      placeholder="Enter a technic"
+                      className="form-control"
+                      value={technic}
+                      onChange={(event) => {
+                        setTechnic(event.target.value);
+                      }}
+                    />
+                  </div>
+                </div>
 
-          <label>
-            {" "}
-            Technic:
-            <input
-              value={technic}
-              onChange={(event) => {
-                setTechnic(event.target.value);
-              }}
-            />
-          </label>
+                <label className="my-2 text-secondary small">Price:</label>
+                <input
+                  placeholder="Enter a price"
+                  className="form-control"
+                  value={price}
+                  onChange={(event) => {
+                    setPrice(event.target.value);
+                  }}
+                />
 
-          <label>
-            {" "}
-            Price:
-            <input
-              value={price}
-              onChange={(event) => {
-                setPrice(event.target.value);
-              }}
-            />
-          </label>
+                <label className="mt-4 mb-2 text-secondary small">Description:</label>
+                <textarea
+                 placeholder="Enter a description"
+                  className="form-control"
+                  value={description}
+                  onChange={(event) => setDescription(event.target.value)}
+                  rows={4}
+                  cols={50}
+                />
 
-          <label>
-            Description:
-            <textarea
-              value={description}
-              onChange={(event) => setDescription(event.target.value)}
-              rows={4}
-              cols={50}
-            />
-          </label>
-
-          <label>
-            <input
-              type="file"
-              name="imageUrl"
-              accept="image/png, image/jpg"
-              onChange={(event) => {
-                setImageUrl(URL.createObjectURL(event.target.files[0]));
-              }}
-            ></input>
-            {imageUrl && <img className="imgallpro" src={imageUrl} alt="Preview" />}
-          </label>
-
-          <button type="submit"> Create </button>
-        </form>
+                <label className="my-4 text-secondary small">
+                  <input
+                    className="form-control"
+                    type="file"
+                    name="imageUrl"
+                    accept="image/png, image/jpg"
+                    onChange={(event) => {
+                      setImageUrl(URL.createObjectURL(event.target.files[0]));
+                    }}
+                  ></input>
+                  {imageUrl && (
+                    <img className="w-100" src={imageUrl} alt="Preview" />
+                  )}
+                </label>
+                <div className="mt-3 ">
+                  <button className="btn btn-primary w-100" type="submit">
+                    Create your product
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </Layouts>
   );
