@@ -1,8 +1,5 @@
 # FinestDeal.
 
-# General
-* App based on React.
- 
 # MVP
 * eCommerce for selling and buying art-related products.
 * A page to display all the art products on sale.
@@ -13,6 +10,14 @@
 * Backlog
 * Adding a way for users to interact with each other.
 * Adding a favorites functionality to store potential purchases.
+
+# About
+* Backend running using ExpressJs and MongoDb.
+* Middleware Functions to secure routes and conect with cloud services to store images.
+* Bycrypt to secure the password
+* Possibility of storing images using Claudinary
+* Payment system habilitated via credit card or PayPal
+* Project deployed on Netlify.
 
 # Backlog
 * Adding a way for users to interact with each other.
