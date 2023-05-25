@@ -17,9 +17,51 @@
 # Backlog
 * Adding a way for users to interact with each other.
 * Adding a favorites functionality to the user profile.
-* 
 
 
 # Data Structure
-![Sin título](https://github.com/89hars/projectm3-frontend/assets/120141140/36234b3a-5eb2-4317-9e7f-a18c5266b05b)
+``` 
+├── middleware
+│   └── PrivateRoute.jsx
+├── node_modules
+├── public
+│   ├── Images
+│   └── _redirects
+├── src
+│   ├── assets
+│   │   └── react.svg
+│   ├── components
+│   │   ├── Footer.jsx
+│   │   ├── Header.jsx
+│   │   ├── Layouts.jsx
+│   │   ├── Search.jsx
+│   │   └── TableOfProducts.jsx
+│   ├── context
+│   │   ├── CartContext.jsx
+│   │   ├── SearchContext.jsx
+│   │   └── SessionContext.jsx
+│   ├── pages
+│   │   ├── About.jsx
+│   │   ├── Products.jsx
+│   │   ├── Cart.jsx
+│   │   ├── Contact.jsx
+│   │   ├── Create.jsx
+│   │   ├── Details.jsx
+│   │   ├── Home.jsx
+│   │   ├── Login.jsx
+│   │   ├── Privacy.jsx
+│   │   ├── Profile.jsx
+│   │   ├── Search.jsx
+│   │   └── Signup.jsx
+├── app.jsx
+├── index.css
+├── main.jsx
+├── .env
+├── .eslintrc.cjs
+├── .gitignore
+├── index.html
+├── package-loc.json
+└── vite.config.js
+``` 
+
 
