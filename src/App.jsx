@@ -11,6 +11,9 @@ import Allproducts from "./pages/AllProducts";
 import PrivateRoute from "../middleware/PrivateRoute";
 import SearchPage from "./pages/SearchPage";
 import ProfilePage from "./pages/ProfilePage";
+import ContactPage from "./pages/ContactPage";
+import AboutPage from "./pages/AboutPage"
+import PrivacyPage from "./pages/PrivacyPage";
 
 function App() {
   /*    const APITestConnection 
@@ -59,6 +62,10 @@ function App() {
 
       <Route path="/allproducts" element={<Allproducts />} />
       <Route path="/searchbar" element={<SearchPage />} />
+
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/privacy" element={<PrivacyPage />} />
     </Routes>
   );
 }
