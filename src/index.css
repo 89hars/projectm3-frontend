@@ -27,3 +27,8 @@ a {
   color: white;
   margin-bottom: 24px;
 }
+
+.card-img {
+  height: 300px;
+  background-size: cover;
+}

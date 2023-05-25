@@ -28,14 +28,14 @@ function Search() {
     <div>
       <form className="d-flex" role="search" onSubmit={handleSubmit}>
         <input
-          className="form-control form-control-sm me-2"
+          className="form-control me-2"
           type="search"
           placeholder="Search"
           aria-label="Search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button type="submit" className="btn btn-outline-secondary btn-sm me-2">
+        <button type="submit" className="btn btn-outline-secondary ">
           Search
         </button>
       </form>

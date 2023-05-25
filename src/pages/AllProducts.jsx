@@ -6,7 +6,6 @@ import { SessionContext } from "../contexts/SessionContext";
 import Search from "../components/Search";
 
 const Allproducts = () => {
-
   const [artwork, setArtwork] = useState([]);
   const { cart, setCart } = useContext(CartContext);
   const { token, search } = useContext(SessionContext);
@@ -47,24 +46,18 @@ const Allproducts = () => {
   }, []);
 
   return (
-    <div className="product-page">
+    <div className="product-page bg-white">
       <Layouts>
         <div className="container py-5">
-          <div className="row">
+          <div className="row align-items-center">
             <div className="col-8">
               <div>
-                <h1>All Products</h1>
+                <h1 className="text-primary">All Products</h1>
               </div>
             </div>
             <div className="col-4">
               <Search />
             </div>
-          </div>
-        </div>
-
-        <div className="container py-5">
-          <div className="row">
-            <div className="col-4"></div>
           </div>
         </div>
 
@@ -80,27 +73,36 @@ const Allproducts = () => {
                   }
                 })
                 .map((eachArt) => (
-                  <div className="col-4" key={eachArt._id}>
-                    <div className="card">
-                      <img
-                        src={eachArt?.media[0]?.link}
-                        alt={eachArt.title}
-                        className="card-img-top"
-                      />
+                  <div className="col-3" key={eachArt._id}>
+                    <div className="card border-0">
+                      <div
+                        className="card-img"
+                        style={{
+                          backgroundImage: `url(${eachArt?.media[0]?.link})`,
+                        }}
+                      >
+                        {" "}
+                      </div>
+
                       <div className="card-body">
+                        <div className="card-text text-secondary  small">
+                          {eachArt.artist}
+                        </div>
                         <Link
-                          className="card-title"
+                          className="card-title text-dark fs-4"
                           to={`/details/${eachArt._id}`}
                         >
                           {eachArt.title}
                         </Link>
-                        <p className="card-text">{eachArt.artist}</p>
-                        <p className="card-text">{eachArt.price}</p>
+
+                        <p className="card-text text-secondary">
+                          ${eachArt.price}
+                        </p>
                         <button
-                          className="btn btn-primary"
+                          className="btn btn-primary btn-sm"
                           onClick={() => addProductToCart(eachArt)}
                         >
-                          Add to Cart
+                          <i className="bi-cart"></i> Add to cart
                         </button>
                       </div>
                     </div>
