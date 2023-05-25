@@ -7,7 +7,6 @@
 * A page to display the details of the created product.
 * A shopping cart connected to a payment system and linked to a user.
 * A user profile to display the products linked to a specific user.
-* Backlog
 * Adding a way for users to interact with each other.
 * Adding a favorites functionality to store potential purchases.
 
