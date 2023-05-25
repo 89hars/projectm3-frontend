@@ -50,12 +50,12 @@ const Allproducts = () => {
       <Layouts>
         <div className="container py-5">
           <div className="row align-items-center">
-            <div className="col-8">
+            <div className="col-lg-8">
               <div>
                 <h1 className="text-primary">All Products</h1>
               </div>
             </div>
-            <div className="col-4">
+            <div className="col-lg-4">
               <Search />
             </div>
           </div>
@@ -73,7 +73,7 @@ const Allproducts = () => {
                   }
                 })
                 .map((eachArt) => (
-                  <div className="col-3" key={eachArt._id}>
+                  <div className="col-lg-3" key={eachArt._id}>
                     <div className="card border-0">
                       <div
                         className="card-img"

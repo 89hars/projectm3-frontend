@@ -2,11 +2,15 @@ body {
   background-color: #f1f5f4;
 }
 
+h1{
+  font-size: 30px;
+}
+
 .header-img {
   width: calc(100% - 100px);
 }
 
-.detail-img{
+.detail-img {
   max-height: 400px;
   max-width: calc(100% - 100px);
 }
@@ -51,4 +55,8 @@ caption {
   background-color: #f1f5f4;
   margin-top: 0px;
   font-size: 22px;
+}
+
+.btn-primary {
+  color: #fff !important;
 }

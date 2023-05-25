@@ -190,7 +190,7 @@ const ProfilePage = () => {
                             </button>
                             <button
                               onClick={() => setProductIdToDelete(product._id)}
-                              className="btn btn-outline-danger border btn-sm"
+                              className="btn btn-outline-danger btn-sm"
                               data-bs-toggle="modal"
                               data-bs-target="#deleteModal"
                             >

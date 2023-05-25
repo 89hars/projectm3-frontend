@@ -55,36 +55,40 @@ const DetailsPage = () => {
           <div className="d-flex justify-content-center align-items-center py-5">
             <div className="card border-0 shadow">
               <div className="card-body p-5">
-                <div className="d-flex align-items-center">
-                  <img
-                    src={pieceOfArt.media[0].link}
-                    alt={pieceOfArt.name}
-                    className="detail-img me-5"
-                  />
-                  <div>
-                    <div className="text-secondary small">
-                      <i className="bi bi-person-fill me-2"></i>
-                      {pieceOfArt.artist}
-                    </div>
-                    <h1>{pieceOfArt.title}</h1>
-                    <div className="text-secondary mb-2">
-                      <i className="bi bi-chat-left-text me-2"></i>
-                      {pieceOfArt.description}
-                    </div>
-                    <div className="text-secondary mb-2">
-                      <i className="bi bi-droplet me-2"></i>
-                      {pieceOfArt.technic}
-                    </div>
+                <div className="row align-items-center justify">
+                  <div className="col-lg-6 text-center">
+                    <img
+                      src={pieceOfArt.media[0].link}
+                      alt={pieceOfArt.name}
+                      className="detail-img mb-2"
+                    />
+                  </div>
+                  <div className="col-lg-6 text-md-center text-lg-start">
                     <div>
-                      <i className="bi bi-cash me-2"></i>${pieceOfArt.price}
+                      <div className="text-secondary small">
+                        <i className="bi bi-person-fill me-2"></i>
+                        {pieceOfArt.artist}
+                      </div>
+                      <h1>{pieceOfArt.title}</h1>
+                      <div className="text-secondary mb-2">
+                        <i className="bi bi-chat-left-text me-2"></i>
+                        {pieceOfArt.description}
+                      </div>
+                      <div className="text-secondary mb-2">
+                        <i className="bi bi-droplet me-2"></i>
+                        {pieceOfArt.technic}
+                      </div>
+                      <div>
+                        <i className="bi bi-cash me-2"></i>${pieceOfArt.price}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={addProductToCart}
+                        className="btn btn-primary px-4 mt-4"
+                      >
+                        <i className="bi bi-cart"></i> Add to Cart
+                      </button>
                     </div>
-                    <button
-                      type="button"
-                      onClick={addProductToCart}
-                      className="btn btn-primary px-4 mt-4"
-                    >
-                      <i className="bi bi-cart"></i> Add to Cart
-                    </button>
                   </div>
                 </div>
               </div>

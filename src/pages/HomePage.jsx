@@ -9,8 +9,8 @@ const HomePage = () => {
     <Layouts isHomePage={isHomePage}>
       <section>
         <div className="container py-5">
-          <div className="row justify-content-between align-items-center py-5">
-            <div className="col-6">
+          <div className="row justify-content-center justify-content-md-between align-items-center py-5">
+            <div className="col-md-6">
               <div>
                 <h1>
                   Unique pieces by small creator to make your interior the
@@ -21,15 +21,14 @@ const HomePage = () => {
                   world and make your art known or simply contribute to their
                   growth.
                 </p>
-                <Link
-                  to="/allproducts"
-                  className="btn btn-primary float-end px-4"
-                >
-                  Shop Now <i className="bi bi-arrow-right-short"></i>
-                </Link>
+                <div className=" text-center text-md-end">
+                  <Link to="/allproducts" className="btn btn-primary px-4 py-3">
+                    Shop Now <i className="bi bi-arrow-right-short"></i>
+                  </Link>
+                </div>
               </div>
             </div>
-            <div className="col-5">
+            <div className="col-md-5 text-center">
               <img src="./Images/header.png" className="header-img" alt="" />
             </div>
           </div>
@@ -39,7 +38,7 @@ const HomePage = () => {
       <section className="bg-white">
         <div className="container py-5">
           <div className="row">
-            <div className="col-3">
+            <div className="col-md-3">
               <div>
                 <div className="icon-circle">
                   <i className="bi bi-person"></i>
@@ -51,7 +50,7 @@ const HomePage = () => {
                 </p>
               </div>
             </div>
-            <div className="col-3">
+            <div className="col-md-3">
               <div className="">
                 <div className="icon-circle">
                   <i className="bi bi-cart-fill"></i>
@@ -63,7 +62,7 @@ const HomePage = () => {
                 </p>
               </div>
             </div>
-            <div className="col-3">
+            <div className="col-md-3">
               <div className="">
                 <div className="icon-circle">
                   <i className="bi bi-credit-card"></i>
@@ -75,7 +74,7 @@ const HomePage = () => {
                 </p>
               </div>
             </div>
-            <div className="col-3">
+            <div className="col-md-3">
               <div className="">
                 <div className="icon-circle">
                   <i className="bi bi-heart"></i>

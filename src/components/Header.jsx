@@ -28,7 +28,8 @@ function Header() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+        <div className="collapse navbar-collapse my-1" id="navbarTogglerDemo01">
           <NavLink to="/" className="navbar-brand fw-bold me-4">
             Finest deal
           </NavLink>

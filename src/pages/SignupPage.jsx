@@ -25,7 +25,7 @@ const SignupPage = () => {
   return (
     <Layouts>
       <div className="container my-5">
-        <h1 className="text-center mb-4">Signup page</h1>
+        <h1 className="text-center mb-4 text-primary">Signup page</h1>
         <div className="d-flex justify-content-center align-items-center">
           <div className="card shadow border-0" style={{ width: 400 }}>
             <div className="card-body p-5">
