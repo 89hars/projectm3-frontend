@@ -6,6 +6,7 @@ import { useSearchParams } from "react-router-dom";
 const ProfilePage = () => {
   const { user, token } = useContext(SessionContext);
   const [createdProducts, setCreatedProducts] = useState([]);
+  const [productPurchased, setProductPurchased] = useState([]);
   const [productIdToDelete, setProductIdToDelete] = useState();
   const [productIdToUpdate, setProductIdToUpdate] = useState();
   const [title, setTitle] = useState("");
@@ -30,6 +31,24 @@ const ProfilePage = () => {
 
   useEffect(() => {
     fetchCreatedProducts();
+  }, []);
+
+  const fectProductPurchased = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API}/cart/purchasedby/${user._id}`
+      );
+      if (response.status === 200) {
+        const data = await response.json();
+        setProductPurchased(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fectProductPurchased();
   }, []);
 
   const handleEdit = (productId) => {
@@ -98,64 +117,149 @@ const ProfilePage = () => {
   };
 
   return (
-    <div>
+    <div className="bg-white">
       <Layouts>
-        <div className="container py-3">
-          <h1>{`Hello ${user.firstName} ${user.lastName}`}</h1>
-         
-          {queryParameters.get("payment") === "success" && (
-            <div className="alert alert-success">Payment successfully completed</div>
-          )}
-
-          <h3 className="mt-4">My products</h3>
-
-          <table className="table align-middle">
-            <thead>
-              <tr>
-                <th scope="col">Image</th>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Technic</th>
-                <th scope="col">Price</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {createdProducts.map((product) => (
-                <tr key={product._id}>
-                  <td>
-                    <img
-                      src={product?.media[0]?.link}
-                      alt="someStuff"
-                      width={100}
-                    />
-                  </td>
-                  <td>{product.title}</td>
-                  <td style={{ maxWidth: 500 }}>{product.description}</td>
-                  <td>{product.technic}</td>
-                  <td>{product.price}</td>
-                  <td className="text-end">
-                    <button
-                      onClick={() => handleEdit(product._id)}
-                      className="btn btn-light btn-sm mx-2"
-                      data-bs-toggle="modal"
+        <div className="container py-5">
+          <h1 className="text-primary text-center">{`Hello ${user.firstName} ${user.lastName}`}</h1>
+          <div className="row my-5">
+            <div className="col-md-10 offset-md-1">
+              {queryParameters.get("payment") === "success" && (
+                <div className="alert alert-success">
+                  Payment successfully completed
+                </div>
+              )}
+              <div className="card card-table">
+                <div className="card-body">
+                  <div className="card-title text-secondary">My products</div>
+                  <table className="table align-middle ">
+                    <thead>
+                      <tr>
+                        <th scope="col" className="text-secondary ">
+                      
+                        </th>
+                        <th scope="col" className="text-secondary ">
+                          Title
+                        </th>
+                        <th scope="col" className="text-secondary ">
+                          Description
+                        </th>
+                        <th scope="col" className="text-secondary ">
+                          Technic
+                        </th>
+                        <th scope="col" className="text-secondary ">
+                          Price
+                        </th>
+                        <th scope="col" className="text-secondary"></th>
+                      </tr>
+                    </thead>
+                    <tbody className="">
+                      {createdProducts.map((product) => (
+                        <tr key={product._id}>
+                          <td className="text-center">
+                            <img
+                              src={product?.media[0]?.link}
+                              alt="someStuff"
+                              width={100}
+                            />
+                          </td>
+                          <td>
+                            <div className="text-dark">
+                              {product.title}
+                            </div>
+                          </td>
+                          <td
+                            style={{ maxWidth: 500 }}
+                            className="text-secondary"
+                          >
+                            {product.description}
+                          </td>
+                          <td className="text-secondary">
+                            {product.technic}
+                          </td>
+                          <td className="text-secondary">
+                            ${product.price}
+                          </td>
+                          <td className="text-end">
+                            <button
+                              onClick={() => handleEdit(product._id)}
+                              className="btn btn-light border btn-sm me-2"
+                              data-bs-toggle="modal"
                       data-bs-target="#editModal"
-                    >
-                      edit
-                    </button>
-                    <button
-                      onClick={() => setProductIdToDelete(product._id)}
-                      className="btn btn-danger btn-sm"
-                      data-bs-toggle="modal"
-                      data-bs-target="#deleteModal"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                            >
+                              <i className="bi bi-pencil-square"></i>
+                            </button>
+                            <button
+                              onClick={() => setProductIdToDelete(product._id)}
+                              className="btn btn-outline-danger btn-sm"
+                              data-bs-toggle="modal"
+                              data-bs-target="#deleteModal"
+                            >
+                              <i className="bi bi-x-circle"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="row my-5">
+            <div className="col-md-10 offset-md-1">
+              <div className="card card-table">
+                <div className="card-body">
+                  <div className="card-title text-secondary"> My Orders</div>
+                  <table className="table align-middle">
+                    <thead>
+                      <tr>
+                        <th scope="col" className="text-secondary">
+                        
+                        </th>
+                        <th scope="col" className="text-secondary ">
+                          Title
+                        </th>
+                        <th scope="col" className="text-secondary">
+                          Description
+                        </th>
+                        <th scope="col" className="text-secondary ">
+                          Technic
+                        </th>
+                        <th scope="col" className="text-secondary">
+                          Price
+                        </th>
+                        <th
+                          scope="col"
+                          className="text-secondary text-center"
+                        ></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {productPurchased.map((product) => (
+                        <tr key={product._id}>
+                          <td>
+                            <img
+                              src={product?.media[0]?.link}
+                              alt="someStuff"
+                              width={100}
+                            />
+                          </td>
+                          <td>{product.title}</td>
+                          <td style={{ maxWidth: 500 }}>
+                            {product.description}
+                          </td>
+                          <td>{product.technic}</td>
+                          <td>{product.price}</td>
+                          <td className="text-end"></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div
             className="modal fade"

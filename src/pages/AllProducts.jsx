@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import Layouts from "../components/Layouts";
 import { CartContext } from "../contexts/CartContext";
 import { SessionContext } from "../contexts/SessionContext";
+import Search from "../components/Search";
 
 const Allproducts = () => {
-
   const [artwork, setArtwork] = useState([]);
   const { cart, setCart } = useContext(CartContext);
   const { token, search } = useContext(SessionContext);
@@ -48,34 +48,73 @@ const Allproducts = () => {
   return (
     <div className="product-page">
       <Layouts>
-
-        {artwork ? (
-          <div className="mt-5 row">
-            {artwork
-              .filter((element) => {
-                if (
-                  element.title.toLowerCase().includes(search.toLowerCase())
-                ) {
-                  return element;
-                }
-              })
-              .map((eachArt) => (
-                <div key={eachArt._id} className="col-md-4">
-                  <div className="col-md-6">
-                    <Link to={`/details/${eachArt._id}`}>{eachArt.title}</Link>
-                    <img className="imgallpro" src={eachArt?.media[0]?.link} alt={eachArt.title} />
-                    <p></p>
-
-                    <button className="submit-btn mt-2" onClick={() => addProductToCart(eachArt)}>
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
-              ))}
+        <div className="container py-5">
+          <div className="row align-items-center">
+            <div className="col-lg-8">
+              <div>
+                <h1 className="text-primary">All Products</h1>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <Search />
+            </div>
           </div>
-        ) : (
-          <div>Nothing here</div>
-        )}
+        </div>
+
+        <div className="container">
+          {artwork ? (
+            <div className="row">
+              {artwork
+                .filter((element) => {
+                  if (
+                    element.title.toLowerCase().includes(search.toLowerCase())
+                  ) {
+                    return element;
+                  }
+                })
+                .map((eachArt) => (
+                  <div className="col-lg-3" key={eachArt._id}>
+                    <div className="card border-0">
+                      <div
+                        className="card-img"
+                        style={{
+                          backgroundImage: `url(${eachArt?.media[0]?.link})`,
+                        }}
+                      >
+                        {" "}
+                      </div>
+
+                      <div className="card-body">
+                        <div className="card-text text-secondary  small">
+                          {eachArt.artist}
+                        </div>
+                        <Link
+                          className="card-title text-dark text-custom fs-4"
+                          to={`/details/${eachArt._id}`}
+                        >
+                          {eachArt.title}
+                        </Link>
+
+                        <p className="card-text text-secondary">
+                          ${eachArt.price}
+                        </p>
+                        <button
+                          className="btn btn-primary btn-sm"
+                          onClick={() => addProductToCart(eachArt)}
+                        >
+                          <i className="bi-cart"></i> Add to cart
+                        </button>
+                      </div>
+                    </div>
+
+                    <p></p>
+                  </div>
+                ))}
+            </div>
+          ) : (
+            <div>nothing here</div>
+          )}
+        </div>
       </Layouts>
     </div>
   );

@@ -18,10 +18,14 @@ const CartContextProvider = ({ children }) => {
       if (response.status === 200) {
         const parsed = await response.json();
 
-        let productsformat = parsed.map((c) => {
-          let prodFormat = { ...c.product, cartId: c._id };
-          return prodFormat;
-        });
+        let productsformat = parsed
+          .filter((c) => {
+            return c.product?._id;
+          })
+          .map((c) => {
+            let prodFormat = { ...c.product, cartId: c._id };
+            return prodFormat;
+          });
         setCart(productsformat);
       }
     } catch (error) {

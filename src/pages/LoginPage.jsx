@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
 import Layouts from "../components/Layouts";
 
@@ -25,31 +25,44 @@ const LoginPage = () => {
 
   return (
     <Layouts>
-      <div className="d-flex justify-content-center align-items-center pt-5">
-        <form onSubmit={handleSubmit} style={{ width: 360 }}>
-          <h1>Login page</h1>
-          <label className="text-secondary">Email</label>
-          <input
-            placeholder="Enter you email"
-            className="form-control"
-            type="email"
-            required
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
+      <div className="container my-5">
+        <h1 className="text-center mb-4 text-primary">Login page</h1>
+        <div className="d-flex justify-content-center align-items-center">
+          <div className="card shadow border-0 " style={{ width: 400 }}>
+            <div className="card-body p-5">
+              <form onSubmit={handleSubmit}>
+                <label className="text-secondary small mb-2">Email</label>
+                <input
+                  placeholder="Enter you email"
+                  className="form-control"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                />
 
-          <label className="text-secondary mt-2">Password</label>
-          <input
-            placeholder="Enter a password"
-            className="form-control"
-            type="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
+                <label className="text-secondary small mb-2 mt-2">
+                  Password
+                </label>
+                <input
+                  placeholder="Enter a password"
+                  className="form-control"
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                />
 
-          <button type="submit" className="btn btn-primary mt-4">Log In </button>
-        </form>
+                <button type="submit" className="btn btn-primary mt-4 w-100">
+                  Log In
+                </button>
+                <div className="mt-3 small text-secondary">
+                  You don't have an account? <Link to="/signup">Click here</Link>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </Layouts>
   );

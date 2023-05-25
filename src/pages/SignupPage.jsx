@@ -24,53 +24,59 @@ const SignupPage = () => {
 
   return (
     <Layouts>
-      <div className="d-flex justify-content-center align-items-center pt-5">
-        <form onSubmit={handleSubmit} style={{ width: 360 }}>
-          <h1>Signup page</h1>
-          <label className="text-secondary">Firstname</label>
-          <input
-            placeholder="Enter you firstname"
-            className="form-control"
-            type="firstname"
-            required
-            value={firstName}
-            onChange={(event) => setFirstName(event.target.value)}
-          />
+      <div className="container my-5">
+        <h1 className="text-center mb-4 text-primary">Signup page</h1>
+        <div className="d-flex justify-content-center align-items-center">
+          <div className="card shadow border-0" style={{ width: 400 }}>
+            <div className="card-body p-5">
+              <form onSubmit={handleSubmit}>
+                <label className="text-secondary small mb-2">Firstname</label>
+                <input
+                  placeholder="Enter you firstname"
+                  className="form-control"
+                  type="firstname"
+                  required
+                  value={firstName}
+                  onChange={(event) => setFirstName(event.target.value)}
+                />
 
-          <label className="text-secondary mt-2">Lastname</label>
-          <input
-            placeholder="Enter you lastname"
-            className="form-control"
-            type="lastname"
-            required
-            value={lastName}
-            onChange={(event) => setLastName(event.target.value)}
-          />
+                <label className="text-secondary small mb-2 mt-2">Lastname</label>
+                <input
+                  placeholder="Enter you lastname"
+                  className="form-control"
+                  type="lastname"
+                  required
+                  value={lastName}
+                  onChange={(event) => setLastName(event.target.value)}
+                />
 
-          <label className="text-secondary mt-2">Email</label>
-          <input
-            placeholder="Enter you email"
-            className="form-control"
-            type="email"
-            required
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
+                <label className="text-secondary small mb-2 mt-2">Email</label>
+                <input
+                  placeholder="Enter you email"
+                  className="form-control"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                />
 
-          <label className="text-secondary mt-2">Password</label>
-          <input
-            placeholder="Enter a password"
-            className="form-control"
-            type="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
+                <label className="text-secondary small mb-2 mt-2">Password</label>
+                <input
+                  placeholder="Enter a password"
+                  className="form-control"
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                />
 
-          <button type="submit" className="btn btn-primary mt-4">
-            Create your account
-          </button>
-        </form>
+                <button type="submit" className="btn btn-primary mt-4 w-100">
+                  Create your account
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </Layouts>
   );

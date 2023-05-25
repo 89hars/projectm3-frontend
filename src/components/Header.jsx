@@ -1,11 +1,10 @@
 import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
-import Search from "./Search";
 import { CartContext } from "../contexts/CartContext";
 
 function Header() {
-  const { cart, setCart } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
   const { isLoggedIn, user, logout } = useContext(SessionContext);
 
   const navigate = useNavigate();
@@ -16,8 +15,8 @@ function Header() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-      <div className="container-fluid">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary py-3 border-bottom bg-white">
+      <div className="container">
         <button
           className="navbar-toggler"
           type="button"
@@ -29,14 +28,14 @@ function Header() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <NavLink to="/" className="navbar-brand headerName">
-            ARTS WORLD
+
+        <div className="collapse navbar-collapse my-1" id="navbarTogglerDemo01">
+          <NavLink to="/" className="navbar-brand me-4 text-custom">
+            <img src="../Images/logo_arrti.png" alt="logo" className="logo"/>
           </NavLink>
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <Search />
+          <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <NavLink to="/" className="nav-link">
+              <NavLink to="/" className="nav-link me-4">
                 Home
               </NavLink>
             </li>
@@ -45,28 +44,37 @@ function Header() {
                 Products
               </NavLink>
             </li>
+          </ul>
+          <ul className="navbar-nav ms-auto">
             {isLoggedIn ? (
               <>
                 <li className="nav-item">
-                  <NavLink to="/cart" className="nav-link">
-                    Cart ({cart?.length})
+                  <NavLink
+                    to="/cart"
+                    className="nav-link me-4 position-relative"
+                  >
+                    <i className="bi-cart"></i> Cart
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                      {cart?.length}
+                    </span>
                   </NavLink>
                 </li>
                 <li className="nav-item dropdown">
                   <NavLink
-                    className="nav-link dropdown-toggle"
+                    className="nav-link dropdown-toggle me-3"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    Hello {user.firstName}
+                    Hello {user?.firstName}
                   </NavLink>
-                  <ul className="dropdown-menu">
+                  <ul className="dropdown-menu dropdown-menu-end">
                     <li>
                       <NavLink className="dropdown-item" to="/profile">
                         Profile
                       </NavLink>
                     </li>
+                    <li><hr className="dropdown-divider" /></li>
                     <li>
                       <a className="dropdown-item" onClick={handleLogout}>
                         Logout
@@ -76,26 +84,26 @@ function Header() {
                 </li>
                 <div className="d-flex">
                   <button
-                    className="btn btn-primary btn-sm px-3 mx-2"
+                    className="btn btn-primary"
                     type="button"
                     onClick={() => {
                       navigate("/create");
                     }}
                   >
-                    Create
+                    Create Artwork
                   </button>
                 </div>
               </>
             ) : (
               <>
                 <li className="nav-item">
-                  <NavLink to="/signup" className="nav-link">
-                    Signup
+                  <NavLink to="/login" className="nav-link me-4">
+                    Login
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/login" className="nav-link">
-                    Login
+                  <NavLink to="/signup" className="btn btn-primary">
+                    Signup
                   </NavLink>
                 </li>
               </>
