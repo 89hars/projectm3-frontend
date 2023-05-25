@@ -46,7 +46,7 @@ const Allproducts = () => {
   }, []);
 
   return (
-    <div className="product-page bg-white">
+    <div className="product-page">
       <Layouts>
         <div className="container py-5">
           <div className="row align-items-center">
@@ -89,7 +89,7 @@ const Allproducts = () => {
                           {eachArt.artist}
                         </div>
                         <Link
-                          className="card-title text-dark fs-4"
+                          className="card-title text-dark text-custom fs-4"
                           to={`/details/${eachArt._id}`}
                         >
                           {eachArt.title}

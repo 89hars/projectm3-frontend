@@ -15,7 +15,7 @@ function Header() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary py-4 border-bottom bg-white">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary py-3 border-bottom bg-white">
       <div className="container">
         <button
           className="navbar-toggler"
@@ -30,8 +30,8 @@ function Header() {
         </button>
 
         <div className="collapse navbar-collapse my-1" id="navbarTogglerDemo01">
-          <NavLink to="/" className="navbar-brand fw-bold me-4">
-            Finest deal
+          <NavLink to="/" className="navbar-brand me-4 text-custom">
+            <img src="../Images/logo_arrti.png" alt="logo" className="logo"/>
           </NavLink>
           <ul className="navbar-nav me-auto">
             <li className="nav-item">

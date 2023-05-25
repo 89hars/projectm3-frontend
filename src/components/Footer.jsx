@@ -7,13 +7,13 @@ function Footer() {
       <div className="container small">
         <div className="row justify-content-around">
           <div className="col-md-3 mb-4">
-            <div className="h4">Finest deal</div>
+            <div className="h4 text-custom">Finest deal</div>
             <div className="text-secondary">
               Unique pieces by small creator to make your interior the finest.
             </div>
           </div>
           <div className="col-md-2  mb-4">
-            <div className="h4  mb-3">Quick links</div>
+            <div className="h4  mb-3 text-custom">Quick links</div>
             <div>
               <Link to="/" className="text-primary">
                 Home page
@@ -36,7 +36,7 @@ function Footer() {
             </div>
           </div>
           <div className="col-md-3  mb-4">
-            <div className="h4 mb-3">Our socials</div>
+            <div className="h4 mb-3 text-custom">Our socials</div>
             <button className="btn btn-sm btn-primary me-2">
               <i className="bi bi-facebook"></i>
             </button>

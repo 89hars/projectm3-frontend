@@ -12,7 +12,7 @@ const HomePage = () => {
           <div className="row justify-content-center justify-content-md-between align-items-center py-5">
             <div className="col-md-6">
               <div>
-                <h1>
+                <h1 className="fs-1">
                   Unique pieces by small creator to make your interior the
                   finest.
                 </h1>

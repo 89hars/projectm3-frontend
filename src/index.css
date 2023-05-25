@@ -1,9 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
+
 body {
   background-color: #f1f5f4;
+  letter-spacing: 0.8px;
 }
 
-h1{
+.logo{
+  width:150px
+}
+
+h1 {
   font-size: 30px;
+  font-family: "DM Serif Display", serif;
+}
+
+.text-custom {
+  font-family: "DM Serif Display", serif;
+}
+
+.navbar-brand {
+  font-size: 28px;
 }
 
 .header-img {
