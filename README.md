@@ -7,8 +7,7 @@
 * A page to display the details of the created product.
 * A shopping cart connected to a payment system and linked to a user.
 * A user profile to display the products linked to a specific user.
-* Adding a way for users to interact with each other.
-* Adding a favorites functionality to store potential purchases.
+
 
 # About
 * Backend running using ExpressJs and MongoDb.
@@ -17,11 +16,16 @@
 * Possibility of storing images using Claudinary
 * Payment system habilitated via credit card or PayPal
 * Project deployed on Netlify.
-
+* 
 # Backlog
-* Adding a way for users to interact with each other.
-* Adding a favorites functionality to the user profile.
-
+* Adding a mechanism for users to interact with each other.
+* Adding a favorites functionality to the profile.
+* Incorporating a comment model.
+* Incorporating a model for Stores and providing a clear way to handle revenues, taxes, and shipping.
+* Generating hierarchy among users based on minimum sales numbers, as a way to incentivize trust in buyers.
+* Adding more pictures to the product.
+* Adding a special section for audiovisual pieces.
+* Adding a NFT section. 
 
 # Data Structure
 ``` 
