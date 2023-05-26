@@ -30,8 +30,8 @@ function Footer() {
               </Link>
             </div>
             <div>
-              <Link to="/privacy" className="text-primary">
-                Privacy Policy
+              <Link to="/contact" className="text-primary">
+                Contact
               </Link>
             </div>
           </div>
