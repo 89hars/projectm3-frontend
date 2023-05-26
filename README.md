@@ -1,4 +1,4 @@
-# FinestDeal.
+# Arrti.
 
 # MVP
 * eCommerce for selling and buying art-related products.

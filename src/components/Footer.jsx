@@ -7,9 +7,9 @@ function Footer() {
       <div className="container small">
         <div className="row justify-content-around">
           <div className="col-md-3 mb-4">
-            <div className="h4 text-custom">Finest deal</div>
+            <div className="h4 text-custom">Arrti</div>
             <div className="text-secondary">
-              Unique pieces by small creator to make your interior the finest.
+              Unique pieces by small creator to make your interior great again.
             </div>
           </div>
           <div className="col-md-2  mb-4">
