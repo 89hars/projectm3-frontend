@@ -13,8 +13,7 @@ const HomePage = () => {
             <div className="col-md-6">
               <div>
                 <h1 className="fs-1">
-                  Unique pieces by small creator to make your interior the
-                  finest.
+                  Unique pieces by small creator to make your interior great again.
                 </h1>
                 <p className="text-secondary">
                   Join a community of hundreds of artists and buyers in the
